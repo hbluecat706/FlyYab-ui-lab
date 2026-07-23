@@ -1,0 +1,1111 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#F4F5F7">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="author" content="FlyYab">
+<link rel="canonical" href="https://flyyab.ir/tools/world-airports">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FlyYab Tools">
+<meta property="og:title" content="فرودگاه‌های جهان | FlyYab Tools">
+<meta property="og:description" content="جست‌وجو و مشاهده فرودگاه‌های دارای برنامه پروازی جهان روی نقشه تعاملی فلای‌یاب.">
+<meta property="og:url" content="https://flyyab.ir/tools/world-airports">
+<title>فرودگاه‌های جهان | نقشه و اطلاعات فرودگاه‌ها | FlyYab Tools</title>
+<meta name="description" content="فرودگاه‌های دارای برنامه پروازی جهان را روی نقشه تعاملی FlyYab مشاهده و بر اساس کشور، شهر، نام فرودگاه، IATA و ICAO جست‌وجو کنید.">
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="preconnect" href="https://basemaps.cartocdn.com">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@graph":[
+  {
+   "@type":"WebApplication",
+   "@id":"https://flyyab.ir/tools/world-airports#app",
+   "name":"فرودگاه‌های جهان فلای‌یاب",
+   "alternateName":"FlyYab World Airports",
+   "url":"https://flyyab.ir/tools/world-airports",
+   "applicationCategory":"TravelApplication",
+   "operatingSystem":"Any",
+   "isAccessibleForFree":true,
+   "inLanguage":"fa-IR",
+   "description":"نقشه و جست‌وجوی فرودگاه‌های دارای برنامه پروازی جهان",
+   "provider":{"@type":"Organization","name":"FlyYab","url":"https://flyyab.ir/"}
+  },
+  {
+   "@type":"BreadcrumbList",
+   "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"فلای‌یاب","item":"https://flyyab.ir/"},
+    {"@type":"ListItem","position":2,"name":"ابزارهای فلای‌یاب","item":"https://flyyab.ir/tools"},
+    {"@type":"ListItem","position":3,"name":"فرودگاه‌های جهان","item":"https://flyyab.ir/tools/world-airports"}
+   ]
+  }
+ ]
+}
+</script>
+<style>
+:root{--bg:#061322;--text:#f8fbff;--muted:#9db1c7;--line:rgba(255,255,255,.13);--glass:rgba(8,28,47,.88);--solid:#0b2138;--blue:#2f7ef7;--blue2:#7abaff;--teal:#0da392;--gray:#718398;--gold:#ffc34d;--green:#46c89e;--shadow:0 24px 70px rgba(0,0,0,.38);--head:60px;--search:74px;--mini:88px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{width:100%;height:100%;margin:0;overflow:hidden;overscroll-behavior:none;background:var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,Arial,sans-serif;touch-action:manipulation}body{position:fixed;inset:0}button,input,a{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.app{height:100dvh;display:grid;grid-template-rows:var(--head) var(--search) 1fr;overflow:hidden}
+.topbar{z-index:1100;display:grid;grid-template-columns:48px 1fr 48px;align-items:center;padding:0 10px;background:rgba(6,19,34,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(22px)}.icon{width:44px;height:44px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.045);color:var(--text);display:grid;place-items:center}.icon svg,.tool svg,.sheet-btn svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:2}.brand{justify-self:center;border:0;background:transparent;color:var(--text);display:flex;align-items:center;gap:9px;min-width:0;padding:6px 8px;border-radius:13px}.brand:active{background:rgba(255,255,255,.06)}.logo{width:32px;height:32px;border-radius:11px;background:linear-gradient(145deg,#4d99ff,#1458be);display:grid;place-items:center;box-shadow:0 9px 22px rgba(46,125,246,.3);flex:none}.logo svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2}.brand span:last-child{font-size:14px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-live{display:inline-flex!important;align-items:center;gap:5px;flex:none!important;overflow:visible!important;font-size:10px!important;color:#81e4bb!important;padding:4px 7px;border:1px solid rgba(70,200,158,.28);border-radius:999px;background:rgba(70,200,158,.1);cursor:pointer}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#46c89e;box-shadow:0 0 0 0 rgba(70,200,158,.55);animation:livePulse 1.8s infinite}
+@keyframes livePulse{70%{box-shadow:0 0 0 7px rgba(70,200,158,0)}100%{box-shadow:0 0 0 0 rgba(70,200,158,0)}}
+.user-location{width:20px;height:20px;border:4px solid #fff;border-radius:50%;background:#2f7ef7;box-shadow:0 0 0 5px rgba(47,126,247,.22),0 5px 16px rgba(0,0,0,.35)}
+
+.search-zone{z-index:1050;padding:11px 12px 13px;background:rgba(6,19,34,.97);border-bottom:1px solid var(--line);position:relative;backdrop-filter:blur(22px)}.searchbox{height:50px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.055);display:flex;align-items:center;gap:10px;padding:0 13px;box-shadow:0 10px 26px rgba(0,0,0,.18)}.searchbox:focus-within{border-color:rgba(119,184,255,.75);box-shadow:0 0 0 3px rgba(47,126,247,.13)}.searchbox svg{width:20px;height:20px;stroke:var(--muted);fill:none;stroke-width:2}#search{width:100%;height:100%;border:0;outline:0;background:transparent;color:var(--text);font-size:15px}#search::placeholder{color:#8095ad}.clear{display:none;border:0;background:transparent;color:var(--muted);font-size:24px}.results{display:none;position:absolute;top:65px;right:12px;left:12px;max-height:min(56dvh,480px);overflow:auto;background:rgba(7,25,43,.97);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:7px;z-index:1450;backdrop-filter:blur(24px)}.results.open{display:block}.group{padding:9px 10px 6px;color:var(--muted);font-size:11px;font-weight:900}.result{width:100%;border:0;background:transparent;color:var(--text);padding:11px;border-radius:13px;display:grid;grid-template-columns:60px 1fr;gap:10px;text-align:right;align-items:center}.result:active{background:rgba(255,255,255,.075)}.rcode{direction:ltr;color:var(--blue2);font-weight:900}.rname{font-weight:900}.rmeta{font-size:11px;color:var(--muted);margin-top:4px}
+.workspace{position:relative;min-height:0;overflow:hidden;touch-action:none}#map{position:absolute;inset:0;background:#dfe7ed;touch-action:none}.leaflet-container{font-family:Vazirmatn,Tahoma,Arial,sans-serif}.leaflet-control-zoom{display:none}.leaflet-control-attribution{font-size:9px!important}
+.map-lock{position:absolute;inset:0;z-index:700;background:rgba(4,13,24,.2);backdrop-filter:blur(1px);display:grid;place-items:center;transition:.2s}.map-lock.hidden{opacity:0;pointer-events:none}.lock-card{width:min(88%,340px);background:rgba(7,25,43,.94);border:1px solid var(--line);border-radius:22px;padding:20px;text-align:center;box-shadow:var(--shadow);backdrop-filter:blur(25px)}.lock-title{font-weight:900;font-size:16px}.lock-text{font-size:13px;line-height:1.9;color:var(--muted);margin:7px 0 14px}.primary{min-height:45px;border:0;border-radius:13px;background:var(--blue);color:#fff;padding:0 18px;font-weight:900}.secondary{min-height:45px;border:1px solid var(--line);border-radius:13px;background:transparent;color:var(--text);font-weight:900}
+.tools{position:absolute;left:12px;top:12px;z-index:760;display:flex;flex-direction:column;gap:9px}.tool{width:46px;height:46px;border:1px solid rgba(7,21,37,.13);border-radius:15px;background:rgba(255,255,255,.95);color:#102943;display:grid;place-items:center;box-shadow:0 9px 24px rgba(0,0,0,.2)}.tool.active{background:#102943;color:#fff}
+.country-card{position:absolute;right:12px;top:12px;z-index:760;max-width:calc(100% - 84px);background:rgba(7,25,43,.9);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:12px;backdrop-filter:blur(23px);transition:.22s}.country-card.hidden{opacity:0;pointer-events:none;transform:translateY(-8px)}.country-top{display:flex;align-items:center;gap:10px}.flag{width:40px;height:28px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,.24)}.country-fa{font-weight:900;font-size:14px}.country-en{font-size:11px;color:var(--muted);direction:ltr;text-align:right;margin-top:2px}.country-sub{font-size:11px;color:var(--muted);margin-top:3px}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.chip{min-height:35px;border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.065);color:var(--text);padding:0 10px;font-size:11px;font-weight:900}.chip.alt{background:transparent}
+.crumb{position:absolute;right:12px;top:148px;z-index:750;display:flex;align-items:center;gap:6px;max-width:calc(100% - 92px);padding:8px 10px;border-radius:12px;background:rgba(7,25,43,.85);border:1px solid var(--line);font-size:11px;color:var(--muted);box-shadow:0 8px 20px rgba(0,0,0,.18);backdrop-filter:blur(18px)}.crumb button{border:0;background:transparent;color:var(--blue2);padding:0;font-weight:900}.status{position:absolute;left:50%;bottom:calc(var(--mini) + 14px);transform:translateX(-50%);z-index:770;background:rgba(7,25,43,.91);border:1px solid var(--line);border-radius:14px;padding:9px 12px;white-space:nowrap;font-size:12px;box-shadow:var(--shadow);backdrop-filter:blur(20px)}.status strong{color:var(--blue2)}
+.sheet{position:absolute;right:0;left:0;bottom:0;height:var(--mini);z-index:980;border-radius:25px 25px 0 0;background:linear-gradient(180deg,rgba(13,39,64,.84),rgba(6,19,34,.98));border-top:1px solid rgba(255,255,255,.18);box-shadow:0 -22px 55px rgba(0,0,0,.3);overflow:hidden;backdrop-filter:blur(30px) saturate(145%);transition:height .32s cubic-bezier(.2,.8,.2,1)}.sheet.half{height:min(60dvh,620px)}.sheet.full{height:calc(100% - 8px)}.sheet-head{height:88px;display:grid;grid-template-columns:50px 1fr 50px;align-items:center;padding:7px 10px;position:relative;border-bottom:1px solid transparent;touch-action:none}.sheet.half .sheet-head,.sheet.full .sheet-head{border-bottom-color:var(--line)}.grab{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:42px;height:5px;border-radius:99px;background:rgba(255,255,255,.3)}.sheet-copy{text-align:center;padding-top:8px;min-width:0}.sheet-copy strong,.sheet-copy span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sheet-copy strong{font-size:14px}.sheet-copy span{color:var(--muted);font-size:11px;margin-top:5px}.sheet-btn{width:46px;height:46px;border:1px solid transparent;border-radius:50%;background:transparent;color:var(--text);display:grid;place-items:center}.sheet-btn:active{background:rgba(255,255,255,.075)}#closeDetail{visibility:hidden}.detail-mode #closeDetail{visibility:visible}.sheet-content{height:calc(100% - 88px);overflow:auto;overscroll-behavior:contain;padding:13px 14px 30px;touch-action:pan-y}
+.filter-row{display:flex;gap:8px;overflow-x:auto;padding:1px 0 12px;scrollbar-width:none}.filter-row::-webkit-scrollbar{display:none}.pill{flex:none;min-height:38px;border:1px solid var(--line);border-radius:999px;padding:0 13px;background:rgba(255,255,255,.045);color:var(--text);font-size:11px;font-weight:850}.pill.active{background:var(--blue);border-color:var(--blue)}.hint{font-size:11px;line-height:1.8;color:var(--muted);padding:0 2px 12px}.list{display:grid;gap:10px}.airport{width:100%;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.052);color:var(--text);padding:13px;text-align:right;display:grid;grid-template-columns:68px 1fr;gap:11px;align-items:center}.airport:active{background:rgba(255,255,255,.09)}.acode{direction:ltr;font-size:19px;font-weight:900;letter-spacing:1.5px;color:var(--blue2)}.aname{font-weight:900;font-size:14px;line-height:1.7}.ameta{font-size:11px;color:var(--muted);margin-top:3px}.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.badge{font-size:9px;border-radius:999px;padding:4px 7px;border:1px solid var(--line);background:rgba(255,255,255,.04)}.badge.scheduled{color:#7fe1bd;background:rgba(68,197,154,.12)}.badge.intl{color:#93c6ff;background:rgba(47,126,247,.13)}.badge.large{color:#ffd886;background:rgba(255,195,77,.12)}.badge.medium{color:#7ce3d8;background:rgba(13,163,146,.12)}.badge.small{color:#b7c3d0}
+.country-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.country-tile{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.052);color:var(--text);padding:14px;text-align:right;min-height:112px}.country-tile img{width:42px;height:30px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}.country-tile strong,.country-tile span{display:block}.country-tile strong{margin-top:9px}.country-tile span{font-size:11px;color:var(--muted);margin-top:3px}
+.detail{display:none}.detail.active{display:block}.detail-shell{border:1px solid rgba(255,255,255,.17);border-radius:25px;background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.035));box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 20px 48px rgba(0,0,0,.19);padding:16px}.hero{padding:2px 1px 16px;border-bottom:1px solid var(--line)}.dcode{direction:ltr;font-size:37px;font-weight:900;letter-spacing:2px;color:var(--blue2)}.dname{font-size:20px;font-weight:900;line-height:1.65;margin-top:3px}.dmeta{font-size:12px;color:var(--muted);line-height:1.85;margin-top:5px}.detail-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}.action{min-height:48px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.055);color:var(--text);font-weight:900;font-size:12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.info{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:15px;padding:12px}.label{font-size:10px;color:var(--muted)}.value{font-size:13px;font-weight:900;margin-top:6px;line-height:1.55}
+.accordions{display:grid;gap:10px;margin-top:16px}.accordion{border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.045);overflow:hidden}.accordion-head{width:100%;min-height:58px;border:0;background:transparent;color:var(--text);display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:0 14px;text-align:right}.accordion-title{font-size:14px;font-weight:900}.accordion-summary{display:block;font-size:10px;color:var(--muted);font-weight:500;margin-top:4px}.arrow{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.055)}.arrow svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;transition:.22s}.accordion.open .arrow svg{transform:rotate(180deg)}.accordion-body{display:none;padding:0 13px 14px}.accordion.open .accordion-body{display:block}.data-list{display:grid;gap:9px}.data-card{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.035);padding:11px}.data-title{font-size:13px;font-weight:900;display:flex;justify-content:space-between;gap:10px}.data-meta{font-size:11px;line-height:1.9;color:var(--muted);margin-top:6px}.empty,.loading{padding:20px 8px;text-align:center;color:var(--muted);font-size:12px;line-height:1.9}.spinner{width:28px;height:28px;border:3px solid rgba(255,255,255,.12);border-top-color:var(--blue2);border-radius:50%;margin:0 auto 12px;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.links{display:grid;gap:8px}.external{min-height:46px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 12px;font-size:12px;font-weight:800}.source-note{font-size:11px;line-height:1.85;color:var(--muted);margin-top:12px;padding:11px;border:1px dashed var(--line);border-radius:14px}.mini{display:flex;align-items:center;justify-content:center;gap:12px}.mini-code{direction:ltr;color:var(--blue2);font-size:20px;font-weight:900}.mini-text{text-align:right;min-width:0}.mini-text strong,.mini-text span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mini-text span{color:var(--muted);font-size:11px;margin-top:4px}
+.marker{min-width:48px;height:31px;padding:0 8px;border-radius:10px 10px 10px 3px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;letter-spacing:1px;border:2px solid rgba(255,255,255,.95);box-shadow:0 5px 14px rgba(0,0,0,.34);direction:ltr}.marker.large{background:var(--blue)}.marker.medium{background:var(--teal)}.marker.small{background:var(--gray)}.marker.selected{box-shadow:0 0 0 4px var(--gold),0 8px 20px rgba(0,0,0,.42);transform:scale(1.08)}.leaflet-div-icon{background:transparent;border:0}
+.backdrop{position:fixed;inset:0;z-index:1900;background:rgba(0,0,0,.56);opacity:0;pointer-events:none;transition:.22s}.backdrop.open{opacity:1;pointer-events:auto}.drawer{position:fixed;top:0;bottom:0;left:0;z-index:2000;width:min(88vw,370px);background:rgba(6,19,34,.99);border-right:1px solid var(--line);box-shadow:var(--shadow);transform:translateX(-102%);transition:.29s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;backdrop-filter:blur(30px)}.drawer.open{transform:translateX(0)}.drawer-head{height:74px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.drawer-nav{padding:12px;overflow:auto}.drawer-title{font-weight:900}.drawer-sub{font-size:11px;color:var(--muted);margin-top:4px}.section-title{font-size:10px;color:var(--muted);font-weight:900;padding:12px 10px 7px}.drawer-link{width:100%;min-height:49px;border:0;background:transparent;border-radius:14px;display:flex;align-items:center;gap:12px;padding:0 12px;color:var(--text);text-align:right}.drawer-link:active{background:rgba(255,255,255,.07)}.drawer-link svg{width:20px;height:20px;stroke:var(--muted);fill:none;stroke-width:2}.drawer-foot{margin-top:auto;padding:14px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
+.modal{position:fixed;inset:0;z-index:2150;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;padding:16px}.modal.open{display:flex}.modal-card{width:min(100%,520px);max-height:88dvh;overflow:auto;background:rgba(9,30,50,.98);border:1px solid var(--line);border-radius:24px;padding:19px;box-shadow:var(--shadow);backdrop-filter:blur(30px)}.modal-title{font-size:18px;font-weight:900}.modal-text{font-size:13px;color:var(--muted);line-height:1.95;margin-top:7px}.modal-actions{display:flex;gap:9px;margin-top:16px}.modal-actions button{flex:1}.help-list{display:grid;gap:10px;margin-top:15px}.help-item{border:1px solid var(--line);border-radius:15px;padding:12px;background:rgba(255,255,255,.04)}.help-item strong{display:block;font-size:13px}.help-item span{display:block;font-size:11px;color:var(--muted);line-height:1.9;margin-top:5px}.tour-focus{position:fixed;z-index:2090;border:2px solid var(--blue2);border-radius:18px;box-shadow:0 0 0 9999px rgba(0,0,0,.64),0 0 0 5px rgba(47,126,247,.2);pointer-events:none;display:none}.tour-focus.open{display:block}.tour-card{position:fixed;z-index:2100;right:16px;left:16px;bottom:18px;background:rgba(9,30,50,.98);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow);display:none}.tour-card.open{display:block}.tour-card strong{font-size:16px}.tour-card p{font-size:12px;color:var(--muted);line-height:1.9;margin:7px 0 14px}.tour-buttons{display:flex;gap:9px}.tour-buttons button{flex:1}.toast{position:absolute;left:50%;bottom:100px;transform:translateX(-50%) translateY(14px);z-index:1700;background:rgba(6,19,34,.97);border:1px solid var(--line);border-radius:13px;padding:11px 14px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;box-shadow:var(--shadow);white-space:nowrap}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(min-width:900px){.app{grid-template-columns:420px 1fr;grid-template-rows:64px 1fr}.topbar{grid-column:1/3;grid-row:1;height:64px}.search-zone{grid-column:1;grid-row:2;padding:16px;border-left:1px solid var(--line)}.workspace{grid-column:2;grid-row:2}.sheet{position:absolute;top:74px;bottom:0;width:420px;height:auto!important;border-radius:0;background:transparent;border:0;box-shadow:none;backdrop-filter:none}.sheet-head{display:none}.sheet-content{height:100%;padding:0 16px 28px}.status{bottom:18px}.country-card{right:18px;top:18px}.crumb{right:18px;top:154px}.tools{left:18px;top:18px}}
+
+/* =========================================================
+   FlyYab Visual Identity Theme — V1.4
+   Color-only redesign. Layout and behavior remain unchanged.
+   Primary: #2B61F0 / Complementary Amber: #FFB800
+   ========================================================= */
+:root{
+  --bg:#EEF3FA;
+  --text:#172033;
+  --muted:#68758A;
+  --line:rgba(43,97,240,.14);
+  --glass:rgba(255,255,255,.86);
+  --solid:#FFFFFF;
+  --blue:#2B61F0;
+  --blue2:#4B7BFF;
+  --teal:#18B77B;
+  --gray:#8190A8;
+  --gold:#FFB800;
+  --green:#18B77B;
+  --flyyab-25:#F8FAFF;
+  --flyyab-50:#EFF4FF;
+  --flyyab-100:#DDE8FF;
+  --flyyab-200:#BDD1FF;
+  --flyyab-300:#91B1FF;
+  --flyyab-400:#628EFF;
+  --flyyab-500:#2B61F0;
+  --flyyab-600:#1F50D9;
+  --flyyab-700:#183FB5;
+  --flyyab-800:#17358E;
+  --flyyab-900:#172F70;
+  --amber-50:#FFF9E6;
+  --amber-100:#FFF0BD;
+  --amber-300:#FFD45A;
+  --amber-500:#FFB800;
+  --amber-600:#E6A500;
+  --shadow:0 18px 55px rgba(22,47,112,.16),0 4px 16px rgba(22,47,112,.07);
+  --soft-shadow:0 10px 30px rgba(43,97,240,.11);
+}
+
+/* Base */
+html,body{
+  background:
+    radial-gradient(circle at 50% -14%,rgba(75,123,255,.18),transparent 34%),
+    linear-gradient(180deg,#F5F8FD 0%,#EAF1FA 100%);
+  color:var(--text);
+}
+
+/* FlyYab blue masthead */
+.topbar{
+  background:
+    linear-gradient(135deg,var(--flyyab-500) 0%,#2C63F3 55%,var(--flyyab-600) 100%);
+  border-bottom:1px solid rgba(255,255,255,.22);
+  box-shadow:0 12px 30px rgba(43,97,240,.24);
+  backdrop-filter:blur(22px) saturate(145%);
+}
+.topbar .icon{
+  color:#fff;
+  border-color:rgba(255,255,255,.30);
+  background:rgba(255,255,255,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+}
+.topbar .icon:active{background:rgba(255,255,255,.22)}
+.brand{color:#fff}
+.brand:active{background:rgba(255,255,255,.12)}
+.logo{
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.34);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 8px 20px rgba(19,54,155,.25);
+}
+.brand > span:nth-child(2){
+  color:#fff;
+  text-shadow:0 1px 1px rgba(16,48,135,.20);
+}
+.brand-live{
+  color:#114A35!important;
+  background:linear-gradient(180deg,#EBFFF5,#CFF8E5)!important;
+  border-color:rgba(255,255,255,.58)!important;
+  box-shadow:0 5px 14px rgba(15,86,57,.15);
+}
+.live-dot{background:#17B978}
+
+/* Search area */
+.search-zone{
+  background:linear-gradient(180deg,rgba(245,248,253,.98),rgba(238,243,250,.96));
+  border-bottom:1px solid rgba(43,97,240,.10);
+  box-shadow:0 10px 30px rgba(31,80,217,.06);
+}
+.searchbox{
+  background:rgba(255,255,255,.90);
+  border-color:rgba(43,97,240,.18);
+  box-shadow:0 10px 28px rgba(31,80,217,.10),inset 0 1px 0 #fff;
+}
+.searchbox:focus-within{
+  border-color:var(--flyyab-500);
+  box-shadow:0 0 0 4px rgba(43,97,240,.12),0 12px 28px rgba(31,80,217,.12);
+}
+.searchbox svg{stroke:var(--flyyab-500)}
+#search{color:var(--text)}
+#search::placeholder{color:#8794A8}
+.clear{color:var(--flyyab-600)}
+.results{
+  background:rgba(255,255,255,.96);
+  border-color:rgba(43,97,240,.15);
+  box-shadow:0 24px 65px rgba(22,47,112,.20);
+}
+.group{color:var(--flyyab-700)}
+.result{color:var(--text)}
+.result:active{background:var(--flyyab-50)}
+.rcode{color:var(--flyyab-600)}
+.rmeta{color:var(--muted)}
+
+/* Map shell */
+#map{background:#DDE7F5}
+.leaflet-container{background:#DDE7F5}
+.map-lock{background:rgba(23,47,112,.20)}
+.lock-card{
+  background:rgba(255,255,255,.94);
+  color:var(--text);
+  border-color:rgba(43,97,240,.18);
+  box-shadow:0 28px 75px rgba(22,47,112,.24);
+}
+.lock-text{color:var(--muted)}
+.primary{
+  background:linear-gradient(135deg,var(--flyyab-500),var(--flyyab-600));
+  box-shadow:0 12px 26px rgba(43,97,240,.25);
+}
+.secondary{
+  color:var(--flyyab-700);
+  background:#fff;
+  border-color:rgba(43,97,240,.18);
+}
+
+/* Floating map controls */
+.tool{
+  color:var(--flyyab-700);
+  background:rgba(255,255,255,.94);
+  border-color:rgba(43,97,240,.16);
+  box-shadow:0 10px 25px rgba(22,47,112,.17),inset 0 1px 0 #fff;
+}
+.tool:active{background:var(--flyyab-50)}
+.tool.active{
+  color:#fff;
+  background:linear-gradient(145deg,var(--flyyab-500),var(--flyyab-700));
+  border-color:transparent;
+  box-shadow:0 10px 26px rgba(43,97,240,.30);
+}
+
+/* Country glass card */
+.country-card{
+  background:
+    linear-gradient(145deg,rgba(43,97,240,.94),rgba(24,63,181,.92));
+  color:#fff;
+  border-color:rgba(255,255,255,.27);
+  box-shadow:0 22px 50px rgba(24,63,181,.25),inset 0 1px 0 rgba(255,255,255,.16);
+}
+.flag{border-color:rgba(255,255,255,.55);box-shadow:0 5px 14px rgba(8,36,110,.24)}
+.country-fa{color:#fff}
+.country-en,.country-sub{color:rgba(255,255,255,.72)}
+.chip{
+  color:#fff;
+  background:rgba(255,255,255,.14);
+  border-color:rgba(255,255,255,.28);
+}
+.chip:active{background:rgba(255,255,255,.24)}
+.chip.alt{background:rgba(10,41,130,.22)}
+
+/* Breadcrumb + map counter */
+.crumb,.status{
+  color:var(--text);
+  background:rgba(255,255,255,.90);
+  border-color:rgba(43,97,240,.14);
+  box-shadow:0 10px 26px rgba(22,47,112,.14);
+}
+.crumb button,.status strong{color:var(--flyyab-600)}
+
+/* Bottom sheet — premium FlyYab glass */
+.sheet{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.94),rgba(246,249,255,.96));
+  color:var(--text);
+  border-top-color:rgba(43,97,240,.20);
+  box-shadow:0 -24px 65px rgba(22,47,112,.20),inset 0 1px 0 #fff;
+}
+.sheet.half .sheet-head,.sheet.full .sheet-head{border-bottom-color:rgba(43,97,240,.12)}
+.grab{background:linear-gradient(90deg,var(--flyyab-200),var(--flyyab-400),var(--flyyab-200))}
+.sheet-copy strong{color:var(--flyyab-800)}
+.sheet-copy span{color:var(--muted)}
+.sheet-btn{color:var(--flyyab-700)}
+.sheet-btn:active{background:var(--flyyab-50)}
+
+/* Filter system */
+.pill{
+  color:var(--flyyab-700);
+  background:#fff;
+  border-color:rgba(43,97,240,.16);
+  box-shadow:0 4px 12px rgba(22,47,112,.05);
+}
+.pill.active{
+  color:#fff;
+  background:linear-gradient(135deg,var(--flyyab-500),var(--flyyab-600));
+  border-color:transparent;
+  box-shadow:0 10px 24px rgba(43,97,240,.24);
+}
+.hint{color:var(--muted)}
+
+/* Airport list cards */
+.airport{
+  color:var(--text);
+  background:rgba(255,255,255,.90);
+  border-color:rgba(43,97,240,.12);
+  box-shadow:0 7px 18px rgba(22,47,112,.07),inset 0 1px 0 #fff;
+}
+.airport:active{
+  background:var(--flyyab-50);
+  border-color:var(--flyyab-300);
+  box-shadow:0 8px 22px rgba(43,97,240,.12);
+}
+.acode{
+  color:var(--flyyab-600);
+  background:var(--flyyab-50);
+  border:1px solid var(--flyyab-100);
+  border-radius:12px;
+  padding:8px 5px;
+  text-align:center;
+}
+.aname{color:var(--text)}
+.ameta{color:var(--muted)}
+.badge{
+  color:var(--muted);
+  background:#F7F9FC;
+  border-color:#E3E9F2;
+}
+.badge.scheduled{
+  color:#087A50;
+  background:#E9FAF3;
+  border-color:#BFECD9;
+}
+.badge.intl{
+  color:#875D00;
+  background:var(--amber-50);
+  border-color:#FFE09A;
+}
+.badge.large{
+  color:#704D00;
+  background:#FFF4CF;
+  border-color:#FFE39A;
+}
+.badge.medium{
+  color:var(--flyyab-700);
+  background:var(--flyyab-50);
+  border-color:var(--flyyab-100);
+}
+.badge.small{
+  color:#59677D;
+  background:#F1F4F8;
+  border-color:#DBE2EC;
+}
+
+/* World country grid */
+.country-tile{
+  color:var(--text);
+  background:#fff;
+  border-color:rgba(43,97,240,.13);
+  box-shadow:0 7px 18px rgba(22,47,112,.06);
+}
+.country-tile:active{
+  background:var(--flyyab-50);
+  border-color:var(--flyyab-300);
+}
+.country-tile img{border-color:#DCE5F3}
+.country-tile strong{color:var(--flyyab-800)}
+.country-tile span{color:var(--muted)}
+
+/* Airport detail panel */
+.detail-shell{
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.98),rgba(240,246,255,.92));
+  border-color:rgba(43,97,240,.15);
+  box-shadow:inset 0 1px 0 #fff,0 18px 45px rgba(22,47,112,.11);
+}
+.hero{border-bottom-color:rgba(43,97,240,.12)}
+.dcode{color:var(--flyyab-600)}
+.dname{color:var(--flyyab-900)}
+.dmeta{color:var(--muted)}
+.action{
+  color:var(--flyyab-700);
+  background:#fff;
+  border-color:rgba(43,97,240,.16);
+}
+.action:active{background:var(--flyyab-50)}
+.info{
+  background:rgba(255,255,255,.92);
+  border-color:rgba(43,97,240,.12);
+}
+.label{color:var(--muted)}
+.value{color:var(--text)}
+
+/* Detail accordions */
+.accordion{
+  background:rgba(255,255,255,.85);
+  border-color:rgba(43,97,240,.12);
+}
+.accordion-head{color:var(--text)}
+.accordion-head:active{background:var(--flyyab-50)}
+.accordion-title{color:var(--flyyab-800)}
+.accordion-summary{color:var(--muted)}
+.arrow{
+  color:var(--flyyab-600);
+  background:var(--flyyab-50);
+  border:1px solid var(--flyyab-100);
+}
+.data-card{
+  background:#fff;
+  border-color:rgba(43,97,240,.12);
+}
+.data-title{color:var(--flyyab-800)}
+.data-meta,.empty,.loading{color:var(--muted)}
+.external{
+  color:var(--flyyab-700);
+  background:#fff;
+  border-color:rgba(43,97,240,.14);
+}
+.source-note{
+  color:var(--muted);
+  background:var(--flyyab-25);
+  border-color:var(--flyyab-200);
+}
+
+/* Markers */
+.marker.large{background:linear-gradient(145deg,var(--flyyab-500),var(--flyyab-700))}
+.marker.medium{background:linear-gradient(145deg,#4B7BFF,#2B61F0)}
+.marker.small{background:linear-gradient(145deg,#8798B2,#66758C)}
+.marker.selected{
+  box-shadow:0 0 0 5px var(--amber-500),0 10px 24px rgba(22,47,112,.30);
+}
+
+/* Drawer */
+.backdrop{background:rgba(17,32,70,.30)}
+.drawer{
+  color:var(--text);
+  background:rgba(255,255,255,.97);
+  border-right-color:rgba(43,97,240,.15);
+  box-shadow:25px 0 70px rgba(22,47,112,.22);
+}
+.drawer-head{
+  margin:-1px -1px 4px;
+  padding:0 15px;
+  border-radius:0 0 22px 22px;
+  border-bottom-color:rgba(255,255,255,.16);
+  background:linear-gradient(135deg,var(--flyyab-500),var(--flyyab-700));
+  color:#fff;
+}
+.drawer-head .icon{
+  color:#fff;
+  background:rgba(255,255,255,.13);
+  border-color:rgba(255,255,255,.28);
+}
+.drawer-sub{color:rgba(255,255,255,.72)}
+.section-title{color:var(--flyyab-700)}
+.drawer-link{color:var(--text)}
+.drawer-link svg{stroke:var(--flyyab-600)}
+.drawer-link:active{
+  color:var(--flyyab-800);
+  background:var(--flyyab-50);
+}
+.drawer-foot{
+  color:var(--muted);
+  border-top-color:rgba(43,97,240,.12);
+}
+
+/* Help + info modals */
+.modal{background:rgba(18,39,92,.32)}
+.modal-card,.tour-card{
+  color:var(--text);
+  background:rgba(255,255,255,.98);
+  border-color:rgba(43,97,240,.15);
+  box-shadow:0 30px 90px rgba(22,47,112,.25);
+}
+.modal-title{color:var(--flyyab-800)}
+.modal-text{color:var(--muted)}
+.help-item{
+  background:var(--flyyab-25);
+  border-color:var(--flyyab-100);
+}
+.help-item strong{color:var(--flyyab-800)}
+.help-item span{color:var(--muted)}
+.tour-focus{
+  border-color:var(--amber-500);
+  box-shadow:0 0 0 9999px rgba(17,38,91,.54),0 0 0 6px rgba(255,184,0,.22);
+}
+.tour-card strong{color:var(--flyyab-800)}
+.tour-card p{color:var(--muted)}
+
+/* Status toast */
+.toast{
+  color:#fff;
+  background:linear-gradient(135deg,var(--flyyab-700),var(--flyyab-900));
+  border-color:rgba(255,255,255,.18);
+  box-shadow:0 18px 50px rgba(22,47,112,.28);
+}
+
+/* Leaflet native UI */
+.leaflet-bar{
+  border:0!important;
+  box-shadow:0 10px 26px rgba(22,47,112,.16)!important;
+}
+.leaflet-bar a{
+  color:var(--flyyab-700)!important;
+  background:#fff!important;
+  border-bottom-color:#E3EAF5!important;
+}
+.leaflet-bar a:hover{background:var(--flyyab-50)!important}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{
+  color:var(--text)!important;
+  background:#fff!important;
+}
+.leaflet-control-attribution{
+  color:#607087!important;
+  background:rgba(255,255,255,.84)!important;
+}
+
+/* Location marker */
+.user-location{
+  background:var(--flyyab-500);
+  border-color:#fff;
+  box-shadow:0 0 0 6px rgba(43,97,240,.20),0 6px 18px rgba(22,47,112,.25);
+}
+
+/* Desktop panel remains visually consistent */
+@media(min-width:900px){
+  .search-zone{border-left-color:rgba(43,97,240,.12)}
+  .sheet{
+    background:transparent;
+    box-shadow:none;
+  }
+  .sheet-content{
+    background:transparent;
+  }
+}
+
+/* Small mobile refinements — color only */
+@media(max-width:430px){
+  .brand-live{box-shadow:none}
+  .country-card{box-shadow:0 16px 38px rgba(24,63,181,.24)}
+}
+
+
+/* =========================================================
+   Final semantic aviation/status color system
+   Brand remains FlyYab blue + amber; semantic badges use
+   globally familiar status distinctions.
+   ========================================================= */
+.real-logo{
+  padding:0;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid rgba(255,255,255,.48);
+}
+.real-logo img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:inherit;
+}
+
+/* Semantic tokens */
+:root{
+  --semantic-international:#2563EB;
+  --semantic-medium:#0891B2;
+  --semantic-small:#64748B;
+  --semantic-large:#F59E0B;
+  --semantic-scheduled:#16A34A;
+  --semantic-active:#0D9488;
+  --semantic-unscheduled:#94A3B8;
+  --semantic-closed:#DC2626;
+}
+
+/* Meaningful airport badges */
+.badge.scheduled{
+  color:#166534;
+  background:#DCFCE7;
+  border-color:#86EFAC;
+}
+.badge.intl{
+  color:#1E40AF;
+  background:#DBEAFE;
+  border-color:#93C5FD;
+}
+.badge.large{
+  color:#92400E;
+  background:#FEF3C7;
+  border-color:#FCD34D;
+}
+.badge.medium{
+  color:#155E75;
+  background:#CFFAFE;
+  border-color:#67E8F9;
+}
+.badge.small{
+  color:#475569;
+  background:#F1F5F9;
+  border-color:#CBD5E1;
+}
+
+/* Explicit active status, if shown as a generic badge */
+.badge.active-status,
+.badge:has(+ .active-status){
+  color:#115E59;
+}
+.badge.active-status{
+  background:#CCFBF1;
+  border-color:#5EEAD4;
+}
+
+/* Detail badges inherit semantic hierarchy */
+.detail-shell .badge.scheduled{
+  color:#166534;
+  background:#DCFCE7;
+  border-color:#86EFAC;
+}
+.detail-shell .badge.intl{
+  color:#1E40AF;
+  background:#DBEAFE;
+  border-color:#93C5FD;
+}
+.detail-shell .badge.large{
+  color:#92400E;
+  background:#FEF3C7;
+  border-color:#FCD34D;
+}
+.detail-shell .badge.medium{
+  color:#155E75;
+  background:#CFFAFE;
+  border-color:#67E8F9;
+}
+.detail-shell .badge.small{
+  color:#475569;
+  background:#F1F5F9;
+  border-color:#CBD5E1;
+}
+
+/* Map markers use the same semantic classification */
+.marker.large{
+  background:linear-gradient(145deg,#FBBF24,#D97706);
+}
+.marker.medium{
+  background:linear-gradient(145deg,#06B6D4,#0E7490);
+}
+.marker.small{
+  background:linear-gradient(145deg,#94A3B8,#475569);
+}
+.marker.selected{
+  box-shadow:0 0 0 5px var(--flyyab-500),0 10px 24px rgba(22,47,112,.30);
+}
+
+/* Filter chips receive category-specific active colors */
+.pill[data-f="international"].active{
+  background:linear-gradient(135deg,#3B82F6,#1D4ED8);
+  box-shadow:0 10px 24px rgba(37,99,235,.22);
+}
+.pill[data-f="medium"].active{
+  background:linear-gradient(135deg,#06B6D4,#0E7490);
+  box-shadow:0 10px 24px rgba(8,145,178,.22);
+}
+.pill[data-f="small"].active{
+  background:linear-gradient(135deg,#94A3B8,#475569);
+  box-shadow:0 10px 24px rgba(71,85,105,.20);
+}
+.pill[data-f="all"].active{
+  background:linear-gradient(135deg,var(--flyyab-500),var(--flyyab-700));
+}
+
+/* Legend-like visual consistency in cards */
+.airport .badge.scheduled::before,
+.detail-shell .badge.scheduled::before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--semantic-scheduled);
+  display:inline-block;
+  margin-left:4px;
+}
+
+
+/* =========================================================
+   Final map-marker refinement
+   All markers use a calm FlyYab-blue family.
+   Airport class is communicated by size, tone and border,
+   while Amber is reserved only for the selected airport.
+   ========================================================= */
+.marker{
+  position:relative;
+  color:#fff;
+  border-color:rgba(255,255,255,.98);
+  letter-spacing:.8px;
+  box-shadow:0 6px 16px rgba(20,52,130,.24);
+  transition:transform .16s ease,box-shadow .16s ease,filter .16s ease;
+}
+.marker.large{
+  min-width:58px;
+  height:35px;
+  padding:0 10px;
+  border-width:2px;
+  border-radius:11px 11px 11px 3px;
+  font-size:12px;
+  background:linear-gradient(145deg,#1647C9,#2B61F0);
+  box-shadow:0 7px 18px rgba(22,71,201,.30);
+}
+.marker.medium{
+  min-width:51px;
+  height:32px;
+  padding:0 9px;
+  border-width:2px;
+  border-radius:10px 10px 10px 3px;
+  font-size:11px;
+  background:linear-gradient(145deg,#2B61F0,#4B7BFF);
+  box-shadow:0 6px 16px rgba(43,97,240,.25);
+}
+.marker.small{
+  min-width:45px;
+  height:29px;
+  padding:0 7px;
+  border-width:1.5px;
+  border-radius:9px 9px 9px 3px;
+  font-size:10px;
+  background:linear-gradient(145deg,#6689DC,#7999E4);
+  opacity:.92;
+  box-shadow:0 5px 13px rgba(43,75,150,.20);
+}
+.marker.selected{
+  opacity:1;
+  filter:saturate(1.08);
+  transform:scale(1.10);
+  box-shadow:
+    0 0 0 4px #FFB800,
+    0 0 0 7px rgba(255,184,0,.18),
+    0 10px 25px rgba(22,47,112,.30);
+}
+
+
+/* =========================================================
+   FlyYab Tools Shared Shell — World Airports Sample
+   ========================================================= */
+:root{--search:102px}
+.brand-copy{display:flex;flex-direction:column;min-width:0;line-height:1.18;text-align:right}
+.brand-copy strong{font-size:13px;font-weight:600;direction:ltr}
+.brand-copy small{font-size:9px;font-weight:400;color:rgba(255,255,255,.76);margin-top:3px}
+.tools-breadcrumb{
+ height:22px;display:flex;align-items:center;gap:6px;
+ margin:0 3px 7px;color:#77869A;font-size:10px;white-space:nowrap;overflow:hidden
+}
+.tools-breadcrumb a{color:#46607E}
+.tools-breadcrumb strong{color:#172033;font-weight:600;overflow:hidden;text-overflow:ellipsis}
+.drawer-link span{display:block;min-width:0;flex:1}
+.drawer-link strong{display:block;font-size:12px;font-weight:600}
+.drawer-link small{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:400}
+.drawer-link em{
+ font-style:normal;font-size:9px;padding:4px 7px;border-radius:999px;
+ color:#1F50D9;background:#E9F0FF;border:1px solid #C9D9FF
+}
+.drawer-link.active{background:#EFF4FF;color:#173FB5}
+.drawer-link.active svg{stroke:#2B61F0}
+.drawer-foot{display:flex;flex-direction:column;gap:2px}
+.drawer-foot strong{font-size:12px;color:#172033}
+.drawer-foot span{font-size:9px}
+.drawer-foot small{font-size:8px;margin-top:4px}
+.tools-common-footer{
+ margin-top:22px;padding:15px;border:1px solid rgba(43,97,240,.12);
+ border-radius:20px;background:rgba(255,255,255,.74);
+ box-shadow:0 8px 24px rgba(22,47,112,.06)
+}
+.trust-strip{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
+ padding-bottom:14px;border-bottom:1px solid rgba(43,97,240,.10)
+}
+.trust-strip span{
+ display:flex;align-items:center;justify-content:center;gap:5px;
+ min-height:34px;border-radius:10px;background:#F5F7FA;color:#526076;font-size:9px;font-weight:500
+}
+.trust-strip i{width:6px;height:6px;border-radius:50%;background:#18A66E}
+.related-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:15px 0 9px}
+.related-head strong{display:block;font-size:14px;color:#172033}
+.related-head small{display:block;font-size:9px;color:#77869A;margin-top:2px}
+.related-head>a{font-size:10px;color:#2B61F0;font-weight:600}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.related-tool{
+ min-height:66px;padding:10px;border:1px solid rgba(43,97,240,.11);
+ border-radius:14px;background:#fff;display:flex;align-items:center;gap:9px
+}
+.related-tool>b{
+ width:36px;height:36px;border-radius:11px;background:#EEF3FF;color:#2B61F0;
+ display:grid;place-items:center;font-size:11px;direction:ltr
+}
+.related-tool span{min-width:0}
+.related-tool strong{display:block;font-size:11px;color:#172033}
+.related-tool small{display:block;margin-top:3px;font-size:8px;color:#77869A;line-height:1.6}
+.privacy-note{
+ margin-top:10px;padding:11px;border-radius:13px;background:#F5F7FA;
+ border-right:3px solid #2B61F0
+}
+.privacy-note strong{display:block;font-size:11px;color:#172033}
+.privacy-note span{display:block;margin-top:4px;font-size:9px;line-height:1.85;color:#68758A}
+.mini-footer{
+ margin-top:13px;padding-top:13px;border-top:1px solid rgba(43,97,240,.10);
+ display:flex;align-items:center;justify-content:space-between;gap:10px
+}
+.mini-footer strong{display:block;font-size:11px;color:#172033;direction:ltr}
+.mini-footer small{display:block;font-size:8px;color:#7A8799}
+.mini-footer-links{display:flex;gap:9px;flex-wrap:wrap;font-size:8px;color:#607089}
+@media(min-width:900px){
+ :root{--search:96px}
+ .search-zone{padding-top:10px}
+ .tools-common-footer{margin-bottom:10px}
+}
+@media(max-width:520px){
+ .brand-live{display:none!important}
+ .brand-copy strong{font-size:12px}
+ .related-grid{grid-template-columns:1fr}
+ .mini-footer{align-items:flex-start;flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+<button class="icon" id="menuBtn" aria-label="منو"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+<button class="brand" id="brandReset" aria-label="بازنشانی ابزار فرودگاه‌های جهان"><span class="logo real-logo"><img src="https://s.cafebazaar.ir/images/icons/ir.charter.flyyab-b9367798-7f13-4a7c-a5d5-9c494c232f18_512x512.png?x-img=v1/format,type_webp,lossless_false/resize,h_128,w_128,lossless_false/optimize" alt="لوگوی FlyYab" referrerpolicy="no-referrer"></span><span class="brand-copy"><strong>FlyYab Tools</strong><small>فرودگاه‌های جهان</small></span><span class="brand-live" id="dataStatusBtn" role="button" tabindex="0"><i class="live-dot"></i>به‌روز</span></button>
+<button class="icon" id="shareBtn" aria-label="اشتراک‌گذاری صفحه"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="2"/><circle cx="6" cy="12" r="2"/><circle cx="18" cy="19" r="2"/><path d="m8 11 8-5M8 13l8 5"/></svg></button>
+</header>
+<section class="search-zone">
+<nav class="tools-breadcrumb" aria-label="مسیر صفحه"><a href="https://flyyab.ir/">فلای‌یاب</a><span>←</span><a href="https://flyyab.ir/tools">ابزارها</a><span>←</span><strong>فرودگاه‌های جهان</strong></nav>
+<div class="searchbox"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="search" autocomplete="off" placeholder="کشور، شهر، فرودگاه، IATA یا ICAO"><button class="clear" id="clearSearch">×</button></div>
+<div class="results" id="searchResults"></div>
+</section>
+<main class="workspace">
+<div id="map"></div>
+<div class="map-lock" id="mapLock"><div class="lock-card"><div class="lock-title">نقشه در حالت قفل است</div><div class="lock-text">برای لمس کشورها یا حرکت نقشه، آن را فعال کنید. خود صفحه در موبایل بزرگ و کوچک نمی‌شود.</div><button class="primary" id="unlockMap">فعال کردن نقشه</button></div></div>
+<div class="tools">
+<button class="tool" id="helpBtn" aria-label="راهنمای ابزار"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8M12 17h.01"/></svg></button>
+<button class="tool" id="zoomIn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+<button class="tool" id="zoomOut"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+<button class="tool" id="fitCountry"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>
+<button class="tool" id="worldBtn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></button>
+<button class="tool" id="locationBtn" aria-label="موقعیت من"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></button>
+<button class="tool" id="lockBtn"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></button>
+</div>
+<div class="country-card" id="countryCard">
+<div class="country-top"><img class="flag" id="countryFlag"><div><div class="country-fa" id="countryFa"></div><div class="country-en" id="countryEn"></div><div class="country-sub" id="countrySub"></div></div></div>
+<div class="actions"><button class="chip" id="worldChip">بازگشت به جهان</button><button class="chip alt" id="resetFilters">پاک‌کردن فیلترها</button></div>
+</div>
+<div class="crumb"><button id="crumbWorld">جهان</button><span>←</span><strong id="crumbCurrent">ایران</strong></div>
+<div class="status" id="mapStatus"><strong>۰</strong> فرودگاه در محدوده نقشه</div>
+<section class="sheet" id="sheet">
+<div class="sheet-head" id="sheetHead"><button class="sheet-btn" id="closeDetail"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button><div class="sheet-copy" id="sheetCopy"><strong id="sheetTitle">فرودگاه‌های ایران</strong><span id="sheetSub">در حال بارگذاری</span></div><button class="sheet-btn" id="toggleSheet"><svg id="sheetArrow" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg></button><span class="grab"></span></div>
+<div class="sheet-content"><div id="mainContent"><div class="loading"><div class="spinner"></div>در حال آماده‌سازی نقشه جهان</div></div><article class="detail" id="detail"></article>
+<section class="tools-common-footer" aria-label="بخش مشترک ابزارهای فلای‌یاب">
+ <div class="trust-strip">
+  <span><i></i>رایگان</span>
+  <span><i></i>بدون ثبت‌نام</span>
+  <span><i></i>مناسب موبایل</span>
+ </div>
+ <div class="related-head"><div><strong>ابزارهای مرتبط</strong><small>ادامه سفر با FlyYab Tools</small></div><a href="https://flyyab.ir/tools">مشاهده همه</a></div>
+ <div class="related-grid">
+  <a class="related-tool" href="https://flyyab.ir/tools/iran-airports"><b>IR</b><span><strong>فرودگاه‌های ایران</strong><small>نقشه و اطلاعات فرودگاه‌های کشور</small></span></a>
+  <a class="related-tool" href="https://flyyab.ir/tools/passport-expiry-calculator"><b>P</b><span><strong>اعتبار پاسپورت</strong><small>محاسبه تاریخ انقضا و قانون ۶ ماهه</small></span></a>
+ </div>
+ <div class="privacy-note"><strong>حریم خصوصی و منبع داده</strong><span>جست‌وجوهای شما در این صفحه ذخیره نمی‌شوند. اطلاعات فرودگاه‌ها از OurAirports دریافت می‌شود و شامل وضعیت زنده پروازها نیست.</span></div>
+ <footer class="mini-footer">
+  <div><strong>FlyYab Tools</strong><small>ابزارهای رایگان و کاربردی سفر</small></div>
+  <div class="mini-footer-links"><a href="https://flyyab.ir/">FlyYab.ir</a><a href="https://flyyab.ir/about-us">درباره ما</a><a href="https://flyyab.ir/blog">مجله سفر</a></div>
+ </footer>
+</section>
+</div>
+</section>
+<div class="toast" id="toast"></div>
+</main>
+</div>
+
+<div class="backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="drawer">
+<div class="drawer-head"><div><div class="drawer-title">FlyYab Tools</div><div class="drawer-sub">فرودگاه‌های جهان</div></div><button class="icon" id="closeDrawer"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+<nav class="drawer-nav">
+<div class="section-title">FlyYab Tools</div>
+<a class="drawer-link" href="https://flyyab.ir/tools"><svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg><span><strong>صفحه اصلی ابزارها</strong><small>همه ابزارهای رایگان سفر</small></span></a>
+<a class="drawer-link" href="https://flyyab.ir/tools/iran-airports"><svg viewBox="0 0 24 24"><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span><strong>فرودگاه‌های ایران</strong><small>نقشه و اطلاعات فرودگاه‌های کشور</small></span></a>
+<a class="drawer-link active" aria-current="page" href="https://flyyab.ir/tools/world-airports"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span><strong>فرودگاه‌های جهان</strong><small>ابزار فعلی</small></span><em>فعال</em></a>
+<a class="drawer-link" href="https://flyyab.ir/tools/passport-expiry-calculator"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span><strong>اعتبار پاسپورت</strong><small>تاریخ انقضا و قانون ۶ ماهه</small></span></a>
+
+<div class="section-title">این ابزار</div>
+<button class="drawer-link" id="drawerReset"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg><span><strong>بازنشانی کامل</strong><small>بازگشت به نمای اولیه جهان</small></span></button>
+<button class="drawer-link" id="startTour"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 5h11l-2 4 2 4H4"/></svg><span><strong>تور مرحله‌به‌مرحله</strong><small>آشنایی سریع با امکانات نقشه</small></span></button>
+<button class="drawer-link" id="fullHelp"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.4 2.2c-.8.4-1.2.9-1.2 1.8M12 17h.01"/></svg><span><strong>راهنمای کامل</strong><small>روش جست‌وجو، فیلتر و انتخاب کشور</small></span></button>
+<button class="drawer-link" id="drawerShare"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="2"/><circle cx="6" cy="12" r="2"/><circle cx="18" cy="19" r="2"/><path d="m8 11 8-5M8 13l8 5"/></svg><span><strong>اشتراک‌گذاری ابزار</strong><small>ارسال لینک صفحه برای دیگران</small></span></button>
+
+<div class="section-title">فلای‌یاب</div>
+<a class="drawer-link" href="https://flyyab.ir/"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg><span><strong>بازگشت به FlyYab.ir</strong><small>رزرو بلیط، هتل و خدمات سفر</small></span></a>
+</nav>
+<div class="drawer-foot"><strong>FlyYab Tools</strong><span>مجموعه ابزارهای رایگان و کاربردی سفر</span><small>© FlyYab</small></div>
+</aside>
+
+
+<div class="modal" id="dataModal"><div class="modal-card">
+<div class="modal-title">وضعیت اطلاعات فرودگاه‌ها</div>
+<div class="modal-text">نشان سبز یعنی ابزار از خروجی به‌روز OurAirports استفاده می‌کند. فایل‌های داده این پروژه به‌صورت روزانه تولید می‌شوند، اما این اطلاعات «زنده پرواز» نیستند.</div>
+<div class="help-list">
+<div class="help-item"><strong>محدوده نمایش</strong><span>فقط فرودگاه‌هایی نمایش داده می‌شوند که در دیتاست دارای پرواز برنامه‌ای ثبت شده‌اند.</span></div>
+<div class="help-item"><strong>موارد حذف‌شده</strong><span>فرودگاه‌های بدون برنامه پروازی، هلی‌پورت‌ها، مکان‌های بسته، پایگاه‌های دریایی و Balloonport روی نقشه و فهرست نمایش داده نمی‌شوند.</span></div>
+<div class="help-item"><strong>به‌روزرسانی</strong><span>خروجی OurAirports روزانه تولید می‌شود. تاریخ یک رکورد فقط زمانی تغییر می‌کند که محتوای همان رکورد ویرایش شده باشد.</span></div>
+<div class="help-item"><strong>محدودیت</strong><span>این ابزار وضعیت لحظه‌ای پرواز، تأخیر، لغو یا باز و بسته بودن عملیاتی امروز را ارائه نمی‌کند.</span></div>
+</div>
+<div class="modal-actions"><button class="primary" id="closeDataModal">متوجه شدم</button></div>
+</div></div>
+
+<div class="modal" id="helpModal"><div class="modal-card"><div class="modal-title">راهنمای ابزار فرودگاه‌های جهان</div><div class="modal-text">با این ابزار می‌توانید کشورها را مستقیماً از روی نقشه انتخاب کنید، فرودگاه‌های دارای برنامه پروازی را فیلتر کنید و اطلاعات فنی هر فرودگاه را ببینید.</div>
+<div class="help-list">
+<div class="help-item"><strong>انتخاب کشور</strong><span>نقشه را فعال کنید و روی هر کشور لمس کنید. مرز کشور برجسته می‌شود و فهرست فرودگاه‌های آن بارگذاری خواهد شد.</span></div>
+<div class="help-item"><strong>فیلترها</strong><span>همه فرودگاه‌های برنامه‌ای، بین‌المللی، متوسط و کوچک. هلی‌پورت‌ها، مکان‌های بسته، پایگاه‌های دریایی و Balloonport نمایش داده نمی‌شوند.</span></div>
+<div class="help-item"><strong>معنی فعال</strong><span>در این نسخه فقط فرودگاه‌هایی نمایش داده می‌شوند که فیلد پرواز برنامه‌ای برای آن‌ها فعال است.</span></div>
+<div class="help-item"><strong>بین‌المللی</strong><span>در نسخه فعلی، از وجود عبارت International در نام رسمی رکورد تشخیص داده می‌شود.</span></div>
+<div class="help-item"><strong>رنگ نشانگرها</strong><span>آبی: بزرگ، سبز: متوسط، خاکستری: کوچک.</span></div>
+<div class="help-item"><strong>جزئیات فرودگاه</strong><span>کدها، موقعیت، باندها، فرکانس‌ها، تجهیزات ناوبری، لینک‌های رسمی و تاریخ آخرین به‌روزرسانی را نمایش می‌دهد.</span></div>
+<div class="help-item"><strong>جست‌وجو</strong><span>نام فارسی یا انگلیسی کشورها در تمام جهان قابل جست‌وجو است. جست‌وجوی شهر و فرودگاه روی کشورهایی که در این نشست بارگذاری شده‌اند انجام می‌شود.</span></div>
+<div class="help-item"><strong>منبع داده</strong><span>داده فرودگاه‌ها از OurAirports دریافت می‌شود و اطلاعات زنده پرواز، تأخیر یا لغو را شامل نمی‌شود.</span></div>
+</div><div class="modal-actions"><button class="secondary" id="helpTour">شروع تور</button><button class="primary" id="closeHelp">متوجه شدم</button></div></div></div>
+
+<div class="tour-focus" id="tourFocus"></div>
+<div class="tour-card" id="tourCard"><strong id="tourTitle"></strong><p id="tourText"></p><div class="tour-buttons"><button class="secondary" id="tourExit">خروج</button><button class="primary" id="tourNext">بعدی</button></div></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/topojson-client@3"></script>
+<script>
+const URLS={
+ borders:"https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json",
+ airports:"https://davidmegginson.github.io/ourairports-data/airports.csv",
+ runways:"https://davidmegginson.github.io/ourairports-data/runways.csv",
+ frequencies:"https://davidmegginson.github.io/ourairports-data/airport-frequencies.csv",
+ navaids:"https://davidmegginson.github.io/ourairports-data/navaids.csv"
+};
+const ISO_DATA={"AW":{"numeric":"533","name":"Aruba"},"AF":{"numeric":"004","name":"Afghanistan"},"AO":{"numeric":"024","name":"Angola"},"AI":{"numeric":"660","name":"Anguilla"},"AX":{"numeric":"248","name":"Åland Islands"},"AL":{"numeric":"008","name":"Albania"},"AD":{"numeric":"020","name":"Andorra"},"AE":{"numeric":"784","name":"United Arab Emirates"},"AR":{"numeric":"032","name":"Argentina"},"AM":{"numeric":"051","name":"Armenia"},"AS":{"numeric":"016","name":"American Samoa"},"AQ":{"numeric":"010","name":"Antarctica"},"TF":{"numeric":"260","name":"French Southern Territories"},"AG":{"numeric":"028","name":"Antigua and Barbuda"},"AU":{"numeric":"036","name":"Australia"},"AT":{"numeric":"040","name":"Austria"},"AZ":{"numeric":"031","name":"Azerbaijan"},"BI":{"numeric":"108","name":"Burundi"},"BE":{"numeric":"056","name":"Belgium"},"BJ":{"numeric":"204","name":"Benin"},"BQ":{"numeric":"535","name":"Bonaire, Sint Eustatius and Saba"},"BF":{"numeric":"854","name":"Burkina Faso"},"BD":{"numeric":"050","name":"Bangladesh"},"BG":{"numeric":"100","name":"Bulgaria"},"BH":{"numeric":"048","name":"Bahrain"},"BS":{"numeric":"044","name":"Bahamas"},"BA":{"numeric":"070","name":"Bosnia and Herzegovina"},"BL":{"numeric":"652","name":"Saint Barthélemy"},"BY":{"numeric":"112","name":"Belarus"},"BZ":{"numeric":"084","name":"Belize"},"BM":{"numeric":"060","name":"Bermuda"},"BO":{"numeric":"068","name":"Bolivia, Plurinational State of"},"BR":{"numeric":"076","name":"Brazil"},"BB":{"numeric":"052","name":"Barbados"},"BN":{"numeric":"096","name":"Brunei Darussalam"},"BT":{"numeric":"064","name":"Bhutan"},"BV":{"numeric":"074","name":"Bouvet Island"},"BW":{"numeric":"072","name":"Botswana"},"CF":{"numeric":"140","name":"Central African Republic"},"CA":{"numeric":"124","name":"Canada"},"CC":{"numeric":"166","name":"Cocos (Keeling) Islands"},"CH":{"numeric":"756","name":"Switzerland"},"CL":{"numeric":"152","name":"Chile"},"CN":{"numeric":"156","name":"China"},"CI":{"numeric":"384","name":"Côte d'Ivoire"},"CM":{"numeric":"120","name":"Cameroon"},"CD":{"numeric":"180","name":"Congo, The Democratic Republic of the"},"CG":{"numeric":"178","name":"Congo"},"CK":{"numeric":"184","name":"Cook Islands"},"CO":{"numeric":"170","name":"Colombia"},"KM":{"numeric":"174","name":"Comoros"},"CV":{"numeric":"132","name":"Cabo Verde"},"CR":{"numeric":"188","name":"Costa Rica"},"CU":{"numeric":"192","name":"Cuba"},"CW":{"numeric":"531","name":"Curaçao"},"CX":{"numeric":"162","name":"Christmas Island"},"KY":{"numeric":"136","name":"Cayman Islands"},"CY":{"numeric":"196","name":"Cyprus"},"CZ":{"numeric":"203","name":"Czechia"},"DE":{"numeric":"276","name":"Germany"},"DJ":{"numeric":"262","name":"Djibouti"},"DM":{"numeric":"212","name":"Dominica"},"DK":{"numeric":"208","name":"Denmark"},"DO":{"numeric":"214","name":"Dominican Republic"},"DZ":{"numeric":"012","name":"Algeria"},"EC":{"numeric":"218","name":"Ecuador"},"EG":{"numeric":"818","name":"Egypt"},"ER":{"numeric":"232","name":"Eritrea"},"EH":{"numeric":"732","name":"Western Sahara"},"ES":{"numeric":"724","name":"Spain"},"EE":{"numeric":"233","name":"Estonia"},"ET":{"numeric":"231","name":"Ethiopia"},"FI":{"numeric":"246","name":"Finland"},"FJ":{"numeric":"242","name":"Fiji"},"FK":{"numeric":"238","name":"Falkland Islands (Malvinas)"},"FR":{"numeric":"250","name":"France"},"FO":{"numeric":"234","name":"Faroe Islands"},"FM":{"numeric":"583","name":"Micronesia, Federated States of"},"GA":{"numeric":"266","name":"Gabon"},"GB":{"numeric":"826","name":"United Kingdom"},"GE":{"numeric":"268","name":"Georgia"},"GG":{"numeric":"831","name":"Guernsey"},"GH":{"numeric":"288","name":"Ghana"},"GI":{"numeric":"292","name":"Gibraltar"},"GN":{"numeric":"324","name":"Guinea"},"GP":{"numeric":"312","name":"Guadeloupe"},"GM":{"numeric":"270","name":"Gambia"},"GW":{"numeric":"624","name":"Guinea-Bissau"},"GQ":{"numeric":"226","name":"Equatorial Guinea"},"GR":{"numeric":"300","name":"Greece"},"GD":{"numeric":"308","name":"Grenada"},"GL":{"numeric":"304","name":"Greenland"},"GT":{"numeric":"320","name":"Guatemala"},"GF":{"numeric":"254","name":"French Guiana"},"GU":{"numeric":"316","name":"Guam"},"GY":{"numeric":"328","name":"Guyana"},"HK":{"numeric":"344","name":"Hong Kong"},"HM":{"numeric":"334","name":"Heard Island and McDonald Islands"},"HN":{"numeric":"340","name":"Honduras"},"HR":{"numeric":"191","name":"Croatia"},"HT":{"numeric":"332","name":"Haiti"},"HU":{"numeric":"348","name":"Hungary"},"ID":{"numeric":"360","name":"Indonesia"},"IM":{"numeric":"833","name":"Isle of Man"},"IN":{"numeric":"356","name":"India"},"IO":{"numeric":"086","name":"British Indian Ocean Territory"},"IE":{"numeric":"372","name":"Ireland"},"IR":{"numeric":"364","name":"Iran, Islamic Republic of"},"IQ":{"numeric":"368","name":"Iraq"},"IS":{"numeric":"352","name":"Iceland"},"IL":{"numeric":"376","name":"Israel"},"IT":{"numeric":"380","name":"Italy"},"JM":{"numeric":"388","name":"Jamaica"},"JE":{"numeric":"832","name":"Jersey"},"JO":{"numeric":"400","name":"Jordan"},"JP":{"numeric":"392","name":"Japan"},"KZ":{"numeric":"398","name":"Kazakhstan"},"KE":{"numeric":"404","name":"Kenya"},"KG":{"numeric":"417","name":"Kyrgyzstan"},"KH":{"numeric":"116","name":"Cambodia"},"KI":{"numeric":"296","name":"Kiribati"},"KN":{"numeric":"659","name":"Saint Kitts and Nevis"},"KR":{"numeric":"410","name":"Korea, Republic of"},"KW":{"numeric":"414","name":"Kuwait"},"LA":{"numeric":"418","name":"Lao People's Democratic Republic"},"LB":{"numeric":"422","name":"Lebanon"},"LR":{"numeric":"430","name":"Liberia"},"LY":{"numeric":"434","name":"Libya"},"LC":{"numeric":"662","name":"Saint Lucia"},"LI":{"numeric":"438","name":"Liechtenstein"},"LK":{"numeric":"144","name":"Sri Lanka"},"LS":{"numeric":"426","name":"Lesotho"},"LT":{"numeric":"440","name":"Lithuania"},"LU":{"numeric":"442","name":"Luxembourg"},"LV":{"numeric":"428","name":"Latvia"},"MO":{"numeric":"446","name":"Macao"},"MF":{"numeric":"663","name":"Saint Martin (French part)"},"MA":{"numeric":"504","name":"Morocco"},"MC":{"numeric":"492","name":"Monaco"},"MD":{"numeric":"498","name":"Moldova, Republic of"},"MG":{"numeric":"450","name":"Madagascar"},"MV":{"numeric":"462","name":"Maldives"},"MX":{"numeric":"484","name":"Mexico"},"MH":{"numeric":"584","name":"Marshall Islands"},"MK":{"numeric":"807","name":"North Macedonia"},"ML":{"numeric":"466","name":"Mali"},"MT":{"numeric":"470","name":"Malta"},"MM":{"numeric":"104","name":"Myanmar"},"ME":{"numeric":"499","name":"Montenegro"},"MN":{"numeric":"496","name":"Mongolia"},"MP":{"numeric":"580","name":"Northern Mariana Islands"},"MZ":{"numeric":"508","name":"Mozambique"},"MR":{"numeric":"478","name":"Mauritania"},"MS":{"numeric":"500","name":"Montserrat"},"MQ":{"numeric":"474","name":"Martinique"},"MU":{"numeric":"480","name":"Mauritius"},"MW":{"numeric":"454","name":"Malawi"},"MY":{"numeric":"458","name":"Malaysia"},"YT":{"numeric":"175","name":"Mayotte"},"NA":{"numeric":"516","name":"Namibia"},"NC":{"numeric":"540","name":"New Caledonia"},"NE":{"numeric":"562","name":"Niger"},"NF":{"numeric":"574","name":"Norfolk Island"},"NG":{"numeric":"566","name":"Nigeria"},"NI":{"numeric":"558","name":"Nicaragua"},"NU":{"numeric":"570","name":"Niue"},"NL":{"numeric":"528","name":"Netherlands"},"NO":{"numeric":"578","name":"Norway"},"NP":{"numeric":"524","name":"Nepal"},"NR":{"numeric":"520","name":"Nauru"},"NZ":{"numeric":"554","name":"New Zealand"},"OM":{"numeric":"512","name":"Oman"},"PK":{"numeric":"586","name":"Pakistan"},"PA":{"numeric":"591","name":"Panama"},"PN":{"numeric":"612","name":"Pitcairn"},"PE":{"numeric":"604","name":"Peru"},"PH":{"numeric":"608","name":"Philippines"},"PW":{"numeric":"585","name":"Palau"},"PG":{"numeric":"598","name":"Papua New Guinea"},"PL":{"numeric":"616","name":"Poland"},"PR":{"numeric":"630","name":"Puerto Rico"},"KP":{"numeric":"408","name":"Korea, Democratic People's Republic of"},"PT":{"numeric":"620","name":"Portugal"},"PY":{"numeric":"600","name":"Paraguay"},"PS":{"numeric":"275","name":"Palestine, State of"},"PF":{"numeric":"258","name":"French Polynesia"},"QA":{"numeric":"634","name":"Qatar"},"RE":{"numeric":"638","name":"Réunion"},"RO":{"numeric":"642","name":"Romania"},"RU":{"numeric":"643","name":"Russian Federation"},"RW":{"numeric":"646","name":"Rwanda"},"SA":{"numeric":"682","name":"Saudi Arabia"},"SD":{"numeric":"729","name":"Sudan"},"SN":{"numeric":"686","name":"Senegal"},"SG":{"numeric":"702","name":"Singapore"},"GS":{"numeric":"239","name":"South Georgia and the South Sandwich Islands"},"SH":{"numeric":"654","name":"Saint Helena, Ascension and Tristan da Cunha"},"SJ":{"numeric":"744","name":"Svalbard and Jan Mayen"},"SB":{"numeric":"090","name":"Solomon Islands"},"SL":{"numeric":"694","name":"Sierra Leone"},"SV":{"numeric":"222","name":"El Salvador"},"SM":{"numeric":"674","name":"San Marino"},"SO":{"numeric":"706","name":"Somalia"},"PM":{"numeric":"666","name":"Saint Pierre and Miquelon"},"RS":{"numeric":"688","name":"Serbia"},"SS":{"numeric":"728","name":"South Sudan"},"ST":{"numeric":"678","name":"Sao Tome and Principe"},"SR":{"numeric":"740","name":"Suriname"},"SK":{"numeric":"703","name":"Slovakia"},"SI":{"numeric":"705","name":"Slovenia"},"SE":{"numeric":"752","name":"Sweden"},"SZ":{"numeric":"748","name":"Eswatini"},"SX":{"numeric":"534","name":"Sint Maarten (Dutch part)"},"SC":{"numeric":"690","name":"Seychelles"},"SY":{"numeric":"760","name":"Syrian Arab Republic"},"TC":{"numeric":"796","name":"Turks and Caicos Islands"},"TD":{"numeric":"148","name":"Chad"},"TG":{"numeric":"768","name":"Togo"},"TH":{"numeric":"764","name":"Thailand"},"TJ":{"numeric":"762","name":"Tajikistan"},"TK":{"numeric":"772","name":"Tokelau"},"TM":{"numeric":"795","name":"Turkmenistan"},"TL":{"numeric":"626","name":"Timor-Leste"},"TO":{"numeric":"776","name":"Tonga"},"TT":{"numeric":"780","name":"Trinidad and Tobago"},"TN":{"numeric":"788","name":"Tunisia"},"TR":{"numeric":"792","name":"Türkiye"},"TV":{"numeric":"798","name":"Tuvalu"},"TW":{"numeric":"158","name":"Taiwan, Province of China"},"TZ":{"numeric":"834","name":"Tanzania, United Republic of"},"UG":{"numeric":"800","name":"Uganda"},"UA":{"numeric":"804","name":"Ukraine"},"UM":{"numeric":"581","name":"United States Minor Outlying Islands"},"UY":{"numeric":"858","name":"Uruguay"},"US":{"numeric":"840","name":"United States"},"UZ":{"numeric":"860","name":"Uzbekistan"},"VA":{"numeric":"336","name":"Holy See (Vatican City State)"},"VC":{"numeric":"670","name":"Saint Vincent and the Grenadines"},"VE":{"numeric":"862","name":"Venezuela, Bolivarian Republic of"},"VG":{"numeric":"092","name":"Virgin Islands, British"},"VI":{"numeric":"850","name":"Virgin Islands, U.S."},"VN":{"numeric":"704","name":"Viet Nam"},"VU":{"numeric":"548","name":"Vanuatu"},"WF":{"numeric":"876","name":"Wallis and Futuna"},"WS":{"numeric":"882","name":"Samoa"},"YE":{"numeric":"887","name":"Yemen"},"ZA":{"numeric":"710","name":"South Africa"},"ZM":{"numeric":"894","name":"Zambia"},"ZW":{"numeric":"716","name":"Zimbabwe"}};
+const faRegions=new Intl.DisplayNames(["fa"],{type:"region"}),enRegions=new Intl.DisplayNames(["en"],{type:"region"});
+const countryCatalog={},airportCache={},markerMap=new Map(),borderLayers={},detailCache={},detailPromises={};let allAirportsPromise=null;
+let currentCountry="IR",currentFilter="all",selectedAirport=null,selectedMarker=null,mapEnabled=false,mode="country",detailMinimized=false;
+let userLocationMarker=null,userAccuracyCircle=null;
+const map=L.map("map",{center:[32.2,53.7],zoom:5,zoomControl:false,dragging:false,touchZoom:false,doubleClickZoom:false,scrollWheelZoom:false,boxZoom:false,keyboard:false,zoomSnap:.5,worldCopyJump:true});
+L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{maxZoom:19,subdomains:"abcd",attribution:"&copy; OpenStreetMap &copy; CARTO"}).addTo(map);
+
+function parseCSV(text){const rows=[];let row=[],field="",q=false;for(let i=0;i<text.length;i++){const c=text[i],n=text[i+1];if(c=='"'&&q&&n=='"'){field+='"';i++}else if(c=='"')q=!q;else if(c==","&&!q){row.push(field);field=""}else if((c=="\n"||c=="\r")&&!q){if(c=="\r"&&n=="\n")i++;row.push(field);if(row.some(v=>v!==""))rows.push(row);row=[];field=""}else field+=c}if(field||row.length){row.push(field);rows.push(row)}const h=rows.shift().map(x=>x.trim());return rows.map(r=>Object.fromEntries(h.map((k,i)=>[k,r[i]??""])))}
+function norm(v){return String(v||"").toLowerCase().normalize("NFKD").replace(/[\u064B-\u065F]/g,"").replace(/ي/g,"ی").replace(/ك/g,"ک").replace(/\s+/g," ").trim()}
+function faNum(v){return String(v??"").replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d])}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function getIso2(p){return p&&p.iso2?p.iso2:""}
+function cfa(code){try{return faRegions.of(code)||code}catch(e){return code}}function cen(code){try{return enRegions.of(code)||code}catch(e){return code}}
+async function init(){
+ // Country names are created locally, so a failed network request cannot blank the header.
+ Object.entries(ISO_DATA).forEach(([code,v])=>{
+  countryCatalog[code]={code,nameEn:cen(code)||v.name,nameFa:cfa(code)||code,numeric:v.numeric,continent:"",keywords:""}
+ });
+ // Paint Iran immediately before any remote data finishes.
+ setCountryHeader("IR","در حال دریافت مرزها و فرودگاه‌ها");
+ mainContent.innerHTML='<div class="loading"><div class="spinner"></div>در حال آماده‌سازی مرزهای جهان</div>';
+ try{
+  const world=await fetch(URLS.borders,{cache:"force-cache"}).then(r=>{if(!r.ok)throw new Error("borders");return r.json()});
+  const features=topojson.feature(world,world.objects.countries).features;
+  L.geoJSON(features,{
+   style:f=>borderStyle(numericToIso2(f.id)),
+   onEachFeature:(f,l)=>{
+    const code=numericToIso2(f.id);if(!code||!countryCatalog[code]){l.options.interactive=false;return}
+    borderLayers[code]=l;
+    l.bindTooltip(`${countryCatalog[code].nameFa}<br><span dir="ltr">${countryCatalog[code].nameEn}</span>`,{sticky:true});
+    l.on("click",()=>{if(mapEnabled)selectCountry(code,true)})
+   }
+  }).addTo(map);
+  refreshBorders();
+ }catch(e){
+  toast("مرزهای تعاملی بارگذاری نشد؛ فهرست کشورها همچنان قابل استفاده است");
+ }
+ await selectCountry("IR",false);
+ enableMap(false)
+}
+function numericToIso2(id){
+ const n=String(id).padStart(3,"0");
+ for(const [code,v] of Object.entries(ISO_DATA))if(v.numeric===n)return code;
+ return ""
+}
+function setCountryHeader(code,status){
+ const c=countryCatalog[code];if(!c)return;
+ countryCard.classList.remove("hidden");
+ countryFlag.src=`https://flagcdn.com/w80/${code.toLowerCase()}.png`;
+ countryFlag.alt=`پرچم ${c.nameFa}`;
+ countryFa.textContent=c.nameFa;countryEn.textContent=c.nameEn;countrySub.textContent=status||"";
+ crumbCurrent.textContent=c.nameFa
+}
+function borderStyle(code){const on=mode==="country"&&code===currentCountry;return{color:on?"#1768e5":"#6c7e90",weight:on?3:1,fillColor:on?"#1768e5":"#8291a0",fillOpacity:on?.12:.025}}
+function refreshBorders(){Object.entries(borderLayers).forEach(([c,l])=>l.setStyle(borderStyle(c)))}
+async function ensureGlobalAirports(){
+ if(allAirportsPromise)return allAirportsPromise;
+ allAirportsPromise=fetch(URLS.airports,{cache:"force-cache"})
+  .then(r=>{if(!r.ok)throw new Error("airports");return r.text()})
+  .then(t=>{
+   const grouped={};
+   parseCSV(t).forEach(a=>{
+    const hasScheduled=["1","yes","true"].includes(String(a.scheduled_service||"").toLowerCase());
+    if(!hasScheduled||!["large_airport","medium_airport","small_airport"].includes(a.type)||!a.latitude_deg||!a.longitude_deg)return;
+    const code=a.iso_country;if(!code||!countryCatalog[code])return;
+    (grouped[code]||(grouped[code]=[])).push({
+     id:a.id,ident:a.ident,type:a.type,name:a.name,lat:+a.latitude_deg,lng:+a.longitude_deg,
+     elev:a.elevation_ft,municipality:a.municipality||"—",
+     scheduled:true,
+     icao:a.icao_code||a.gps_code||a.ident||"—",iata:a.iata_code||"",gps:a.gps_code||"",
+     local:a.local_code||"",country:code,region:a.region_name||a.local_region||"",
+     isoRegion:a.iso_region||"",continent:a.continent||"",home:a.home_link||"",
+     wiki:a.wikipedia_link||"",keywords:a.keywords||"",score:a.score||"",updated:a.last_updated||""
+    })
+   });
+   Object.entries(grouped).forEach(([code,arr])=>airportCache[code]=arr.sort((a,b)=>rank(b)-rank(a)||a.name.localeCompare(b.name)));
+   return grouped
+  });
+ return allAirportsPromise
+}
+async function loadAirports(code){
+ if(airportCache[code])return airportCache[code];
+ await ensureGlobalAirports();
+ return airportCache[code]||[]
+}
+function rank(a){return(a.scheduled?100:0)+(a.type==="large_airport"?30:a.type==="medium_airport"?20:10)+(a.iata?5:0)}
+function likelyIntl(a){return /\binternational\b/i.test(a.name)}
+function filtered(items){if(currentFilter==="all")return items;if(currentFilter==="international")return items.filter(likelyIntl);return items.filter(a=>a.type===currentFilter+"_airport")}
+function typeFa(a){return a.type==="large_airport"?"بزرگ":a.type==="medium_airport"?"متوسط":"کوچک"}function codeOf(a){return a.iata||a.icao||a.ident}
+function markerIcon(a,sel=false){
+ const kind=a.type.split("_")[0];
+ const size=kind==="large"?[60,38]:kind==="medium"?[54,35]:[48,32];
+ const anchor=kind==="large"?[10,36]:kind==="medium"?[9,33]:[8,30];
+ return L.divIcon({
+  className:"",
+  html:`<div class="marker ${kind}${sel?" selected":""}">${esc(codeOf(a))}</div>`,
+  iconSize:size,
+  iconAnchor:anchor
+ })
+}
+function clearMarkers(){markerMap.forEach(m=>map.removeLayer(m));markerMap.clear()}
+function renderMarkers(){clearMarkers();const items=filtered(airportCache[currentCountry]||[]);items.forEach(a=>{const m=L.marker([a.lat,a.lng],{icon:markerIcon(a),title:a.name}).addTo(map);m.on("click",()=>openAirport(a,m));markerMap.set(a.id,m)});updateStatus()}
+async function selectCountry(code,notify=true){
+ if(!countryCatalog[code])return;mode="country";currentCountry=code;selectedAirport=null;detailMinimized=false;closeAirport(false,true);setSheet("");refreshBorders();
+ const c=countryCatalog[code];setCountryHeader(code,"در حال دریافت فرودگاه‌های دارای برنامه پروازی");
+ const layer=borderLayers[code];if(layer)map.fitBounds(layer.getBounds(),{padding:[22,22]});
+ mainContent.innerHTML='<div class="loading"><div class="spinner"></div>در اولین اجرا، فایل جهانی فرودگاه‌ها دریافت می‌شود؛ ممکن است چند ثانیه طول بکشد.</div>';
+ try{const all=await loadAirports(code);renderMarkers();renderList();countrySub.textContent=`${faNum(filtered(all).length)} فرودگاه با فیلتر فعلی`;if(notify)toast(`${c.nameFa} انتخاب شد`)}
+ catch(e){clearMarkers();countrySub.textContent="خطا در دریافت اطلاعات";mainContent.innerHTML='<div class="empty">اطلاعات این کشور دریافت نشد. اتصال اینترنت را بررسی کنید.</div>'}
+}
+function showWorld(){mode="world";selectedAirport=null;closeAirport(false,true);setSheet("");clearMarkers();refreshBorders();map.setView([18,12],2);countryCard.classList.add("hidden");crumbCurrent.textContent="کشورهای جهان";renderCountries();sheetTitle.textContent="کشورهای جهان";sheetSub.textContent="روی نقشه یا فهرست، کشور را انتخاب کنید";toast("یک کشور را روی نقشه لمس کنید")}
+function renderCountries(){const arr=Object.values(countryCatalog).sort((a,b)=>a.nameFa.localeCompare(b.nameFa,"fa"));mainContent.innerHTML=`<div class="hint">نام کشورها به فارسی و انگلیسی نمایش داده می‌شود. انتخاب هر کشور، مرز و فرودگاه‌های آن را فعال می‌کند.</div><div class="country-grid">${arr.map(c=>`<button class="country-tile" data-c="${c.code}"><img src="https://flagcdn.com/w80/${c.code.toLowerCase()}.png"><strong>${esc(c.nameFa)}</strong><span dir="ltr">${esc(c.nameEn)}</span></button>`).join("")}</div>`;mainContent.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>selectCountry(b.dataset.c))}
+function filterName(){return currentFilter==="all"?"همه فرودگاه‌های برنامه‌ای":currentFilter==="international"?"بین‌المللی":currentFilter==="medium"?"متوسط":"کوچک"}
+function badgeHtml(a){return `<div class="badges">${a.scheduled?'<span class="badge scheduled">پرواز برنامه‌ای</span>':""}${likelyIntl(a)?'<span class="badge intl">بین‌المللی</span>':""}<span class="badge ${a.type.split("_")[0]}">${typeFa(a)}</span></div>`}
+function renderList(){const items=filtered(airportCache[currentCountry]||[]);mainContent.innerHTML=`<div class="filter-row"><button class="pill ${currentFilter==="all"?"active":""}" data-f="all">همه فرودگاه‌های برنامه‌ای</button><button class="pill ${currentFilter==="international"?"active":""}" data-f="international">بین‌المللی</button><button class="pill ${currentFilter==="medium"?"active":""}" data-f="medium">متوسط</button><button class="pill ${currentFilter==="small"?"active":""}" data-f="small">کوچک</button></div><div class="hint">${filterName()} · ${faNum(items.length)} نتیجه. فقط فرودگاه‌های دارای پرواز برنامه‌ای نمایش داده می‌شوند.</div><div class="list">${items.map(a=>`<button class="airport" data-a="${esc(a.id)}"><div class="acode">${esc(codeOf(a))}</div><div><div class="aname">${esc(a.name)}</div><div class="ameta">${esc(a.municipality)} · ${esc(countryCatalog[a.country].nameFa)}</div>${badgeHtml(a)}</div></button>`).join("")||'<div class="empty">موردی با این فیلتر پیدا نشد.</div>'}</div>`;mainContent.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{currentFilter=b.dataset.f;renderMarkers();renderList();countrySub.textContent=`${faNum(filtered(airportCache[currentCountry]).length)} فرودگاه با فیلتر فعلی`});mainContent.querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>{const a=airportCache[currentCountry].find(x=>String(x.id)===b.dataset.a);openAirport(a,markerMap.get(a.id))});sheetTitle.textContent=`فرودگاه‌های ${countryCatalog[currentCountry].nameFa}`;sheetSub.textContent=`${faNum(items.length)} نتیجه · ${filterName()}`}
+function openAirport(a,m){if(selectedMarker&&selectedAirport)selectedMarker.setIcon(markerIcon(selectedAirport));selectedAirport=a;selectedMarker=m||null;if(m)m.setIcon(markerIcon(a,true));detailMinimized=false;mainContent.style.display="none";detail.classList.add("active");sheet.classList.add("detail-mode");renderDetail(a);sheetTitle.textContent=codeOf(a);sheetSub.textContent=`${a.municipality}، ${countryCatalog[a.country].nameFa}`;crumbCurrent.textContent=`${countryCatalog[a.country].nameFa} ← ${codeOf(a)}`;setSheet("full");map.flyTo([a.lat,a.lng],Math.max(map.getZoom(),7),{duration:.55})}
+function accordion(k,t,s,b,lazy=false){return `<section class="accordion" data-k="${k}"><button class="accordion-head"><span><span class="accordion-title">${t}</span><span class="accordion-summary">${s}</span></span><span class="arrow"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></button><div class="accordion-body" data-loaded="${lazy?"0":"1"}">${b}</div></section>`}
+function renderDetail(a){const c=countryCatalog[a.country];detail.innerHTML=`<div class="detail-shell"><div class="hero"><div class="dcode">${esc(codeOf(a))}</div><div class="dname">${esc(a.name)}</div><div class="dmeta"><img src="https://flagcdn.com/w40/${a.country.toLowerCase()}.png" style="width:24px;height:17px;object-fit:cover;border-radius:4px;vertical-align:middle;margin-left:6px">${esc(c.nameFa)} · <span dir="ltr">${esc(c.nameEn)}</span><br>${esc(a.municipality)}</div><div class="badges">${a.scheduled?'<span class="badge scheduled">دارای پرواز برنامه‌ای</span>':'<span class="badge">بدون پرواز برنامه‌ای ثبت‌شده</span>'}${likelyIntl(a)?'<span class="badge intl">بین‌المللی</span>':""}<span class="badge ${a.type.split("_")[0]}">${typeFa(a)}</span><span class="badge active-status">فعال</span></div></div><div class="detail-actions"><button class="action" id="route">مسیریابی</button><button class="action" id="share">اشتراک</button><button class="action" id="copy">کپی کد</button></div><div class="grid"><div class="info"><div class="label">IATA</div><div class="value" dir="ltr">${esc(a.iata||"—")}</div></div><div class="info"><div class="label">ICAO / GPS</div><div class="value" dir="ltr">${esc(a.icao||"—")}</div></div><div class="info"><div class="label">ارتفاع</div><div class="value">${a.elev?faNum(a.elev)+" فوت":"—"}</div></div><div class="info"><div class="label">شناسه</div><div class="value" dir="ltr">${esc(a.ident)}</div></div></div><div class="accordions">${accordion("location","موقعیت و منطقه","مختصات، منطقه و کد محلی",`<div class="grid"><div class="info"><div class="label">مختصات</div><div class="value" dir="ltr">${a.lat.toFixed(6)}, ${a.lng.toFixed(6)}</div></div><div class="info"><div class="label">منطقه</div><div class="value">${esc(a.region||"—")}</div></div><div class="info"><div class="label">کد منطقه</div><div class="value" dir="ltr">${esc(a.isoRegion||"—")}</div></div><div class="info"><div class="label">کد محلی</div><div class="value" dir="ltr">${esc(a.local||"—")}</div></div></div>`)}${accordion("runways","باندها","طول، عرض، سطح و روشنایی",'<div class="loading">برای دریافت، بخش را باز کنید.</div>',true)}${accordion("frequencies","فرکانس‌های رادیویی","برج، زمین، تقرب و ATIS",'<div class="loading">برای دریافت، بخش را باز کنید.</div>',true)}${accordion("navaids","تجهیزات ناوبری","VOR، DME، NDB و TACAN",'<div class="loading">برای دریافت، بخش را باز کنید.</div>',true)}${accordion("links","لینک‌ها و منابع","وب‌سایت، ویکی‌پدیا و زمان داده",`<div class="links">${a.home?`<a class="external" href="${esc(a.home)}" target="_blank"><span>وب‌سایت رسمی</span><span>باز کردن</span></a>`:""}${a.wiki?`<a class="external" href="${esc(a.wiki)}" target="_blank"><span>ویکی‌پدیا</span><span>باز کردن</span></a>`:""}<a class="external" href="https://ourairports.com/airports/${encodeURIComponent(a.ident)}/" target="_blank"><span>رکورد OurAirports</span><span dir="ltr">${esc(a.ident)}</span></a></div><div class="info" style="margin-top:9px"><div class="label">آخرین به‌روزرسانی رکورد</div><div class="value" dir="ltr">${esc(a.updated||"—")}</div></div><div class="info" style="margin-top:9px"><div class="label">کلیدواژه‌ها</div><div class="value" style="font-weight:500">${esc(a.keywords||"ثبت نشده")}</div></div>`)} </div><div class="source-note">منبع: OurAirports. این ابزار اطلاعات زنده پرواز، تأخیر یا لغو را نمایش نمی‌دهد.</div></div>`;detail.querySelector("#route").onclick=()=>window.open(`https://www.google.com/maps/search/?api=1&query=${a.lat},${a.lng}`,"_blank");detail.querySelector("#copy").onclick=async()=>{await navigator.clipboard.writeText(codeOf(a));toast("کد فرودگاه کپی شد")};detail.querySelector("#share").onclick=async()=>{if(navigator.share)await navigator.share({title:a.name,text:`${codeOf(a)} - ${a.name}`,url:location.href}).catch(()=>{});else toast("اشتراک در این مرورگر موجود نیست")};detail.querySelectorAll(".accordion-head").forEach(b=>b.onclick=()=>toggleAccordion(b,a))}
+async function toggleAccordion(btn,a){const s=btn.closest(".accordion"),body=s.querySelector(".accordion-body"),k=s.dataset.k,opening=!s.classList.contains("open");s.classList.toggle("open",opening);if(!opening||body.dataset.loaded==="1"||!["runways","frequencies","navaids"].includes(k))return;body.innerHTML='<div class="loading"><div class="spinner"></div>در حال دریافت اطلاعات</div>';try{const rows=await loadDetail(k),m=k==="navaids"?rows.filter(x=>x.associated_airport===a.ident):rows.filter(x=>x.airport_ident===a.ident||String(x.airport_ref)===String(a.id));body.innerHTML=k==="runways"?renderRunways(m):k==="frequencies"?renderFreq(m):renderNav(m);body.dataset.loaded="1"}catch(e){body.innerHTML='<div class="empty">دریافت این بخش انجام نشد.</div>'}}
+async function loadDetail(k){if(detailCache[k])return detailCache[k];if(detailPromises[k])return detailPromises[k];detailPromises[k]=fetch(URLS[k],{cache:"force-cache"}).then(r=>{if(!r.ok)throw new Error(k);return r.text()}).then(t=>detailCache[k]=parseCSV(t));return detailPromises[k]}
+function renderRunways(r){if(!r.length)return'<div class="empty">باندی ثبت نشده است.</div>';return`<div class="data-list">${r.map(x=>`<div class="data-card"><div class="data-title"><span dir="ltr">${esc((x.le_ident||"؟")+" / "+(x.he_ident||"؟"))}</span><span>${x.closed==="1"?"بسته":"فعال"}</span></div><div class="data-meta">طول: ${x.length_ft?faNum(x.length_ft)+" فوت":"—"} · عرض: ${x.width_ft?faNum(x.width_ft)+" فوت":"—"}<br>سطح: ${esc(x.surface||"—")} · روشنایی: ${x.lighted==="1"?"دارد":"ثبت نشده/ندارد"}</div></div>`).join("")}</div>`}
+function renderFreq(r){if(!r.length)return'<div class="empty">فرکانسی ثبت نشده است.</div>';return`<div class="data-list">${r.map(x=>`<div class="data-card"><div class="data-title"><span>${esc(x.type||"فرکانس")}</span><span dir="ltr">${esc(x.frequency_mhz||"—")} MHz</span></div><div class="data-meta">${esc(x.description||"بدون توضیح")}</div></div>`).join("")}</div>`}
+function renderNav(r){if(!r.length)return'<div class="empty">تجهیز ناوبری مرتبطی ثبت نشده است.</div>';return`<div class="data-list">${r.map(x=>`<div class="data-card"><div class="data-title"><span>${esc(x.name||"تجهیز ناوبری")}</span><span dir="ltr">${esc(x.type||"—")}</span></div><div class="data-meta">شناسه: <span dir="ltr">${esc(x.ident||"—")}</span> · فرکانس: <span dir="ltr">${x.frequency_khz||"—"} kHz</span></div></div>`).join("")}</div>`}
+function minimizeDetail(){if(!selectedAirport)return;detailMinimized=true;setSheet("");sheetCopy.innerHTML=`<div class="mini"><div class="mini-code">${esc(codeOf(selectedAirport))}</div><div class="mini-text"><strong>${esc(selectedAirport.name)}</strong><span>برای بازکردن جزئیات، تمام این ناحیه را لمس کنید</span></div></div>`}
+function closeAirport(reset=true,silent=false){if(selectedMarker&&selectedAirport)selectedMarker.setIcon(markerIcon(selectedAirport));selectedAirport=null;selectedMarker=null;detailMinimized=false;detail.classList.remove("active");detail.innerHTML="";mainContent.style.display="block";sheet.classList.remove("detail-mode");sheetCopy.innerHTML='<strong id="sheetTitle"></strong><span id="sheetSub"></span>';window.sheetTitle=document.getElementById("sheetTitle");window.sheetSub=document.getElementById("sheetSub");crumbCurrent.textContent=mode==="country"?countryCatalog[currentCountry].nameFa:"کشورهای جهان";if(mode==="country"&&airportCache[currentCountry])renderList();else if(mode==="world")renderCountries();if(!silent)setSheet("half")}
+function setSheet(s){sheet.classList.remove("half","full");if(s)sheet.classList.add(s);sheetArrow.style.transform=sheet.classList.contains("full")?"rotate(180deg)":"rotate(0)"}
+closeDetail.onclick=()=>{if(!selectedAirport)return;if(!detailMinimized&&sheet.classList.contains("full"))minimizeDetail();else closeAirport(true,false)};
+sheetHead.onclick=e=>{if(e.target.closest("button"))return;if(selectedAirport&&detailMinimized){detailMinimized=false;sheetCopy.innerHTML=`<strong id="sheetTitle">${esc(codeOf(selectedAirport))}</strong><span id="sheetSub">${esc(selectedAirport.municipality)}، ${esc(countryCatalog[selectedAirport.country].nameFa)}</span>`;window.sheetTitle=document.getElementById("sheetTitle");window.sheetSub=document.getElementById("sheetSub");setSheet("full")}else if(sheet.classList.contains("full"))setSheet("half");else if(sheet.classList.contains("half"))setSheet("");else setSheet("half")};
+toggleSheet.onclick=e=>{e.stopPropagation();sheetHead.click()};let sy=null;sheetHead.addEventListener("pointerdown",e=>{if(e.target.closest("button"))return;sy=e.clientY;sheetHead.setPointerCapture(e.pointerId)});sheetHead.addEventListener("pointerup",e=>{if(sy===null)return;const d=e.clientY-sy;if(d<-35){if(selectedAirport&&detailMinimized)sheetHead.click();else setSheet(sheet.classList.contains("half")?"full":"half")}else if(d>35){if(selectedAirport&&!detailMinimized)minimizeDetail();else setSheet(sheet.classList.contains("full")?"half":"")}sy=null});
+function enableMap(v){mapEnabled=v;["dragging","touchZoom","doubleClickZoom","scrollWheelZoom","boxZoom","keyboard"].forEach(k=>v?map[k].enable():map[k].disable());mapLock.classList.toggle("hidden",v);lockBtn.classList.toggle("active",!v)}
+function updateStatus(){let n=0;if(mode==="country"&&airportCache[currentCountry]){const b=map.getBounds();n=filtered(airportCache[currentCountry]).filter(a=>b.contains([a.lat,a.lng])).length}mapStatus.innerHTML=`<strong>${faNum(n)}</strong> فرودگاه در محدوده نقشه`}
+
+function showMyLocation(){
+ if(!navigator.geolocation){toast("مرورگر شما موقعیت مکانی را پشتیبانی نمی‌کند");return}
+ locationBtn.classList.add("active");toast("در حال دریافت موقعیت شما");
+ navigator.geolocation.getCurrentPosition(pos=>{
+  const lat=pos.coords.latitude,lng=pos.coords.longitude,acc=pos.coords.accuracy||0;
+  if(userLocationMarker)map.removeLayer(userLocationMarker);
+  if(userAccuracyCircle)map.removeLayer(userAccuracyCircle);
+  const ico=L.divIcon({className:"",html:'<div class="user-location"></div>',iconSize:[20,20],iconAnchor:[10,10]});
+  userLocationMarker=L.marker([lat,lng],{icon:ico,title:"موقعیت من",zIndexOffset:2000}).addTo(map);
+  userAccuracyCircle=L.circle([lat,lng],{radius:acc,color:"#2f7ef7",weight:1,fillColor:"#2f7ef7",fillOpacity:.08}).addTo(map);
+  enableMap(true);map.flyTo([lat,lng],Math.max(map.getZoom(),10),{duration:.7});
+  locationBtn.classList.remove("active");toast("موقعیت شما روی نقشه نمایش داده شد")
+ },err=>{
+  locationBtn.classList.remove("active");
+  const msg=err.code===1?"اجازه دسترسی به موقعیت داده نشد":err.code===2?"موقعیت شما در دسترس نیست":"دریافت موقعیت زمان‌بر شد";
+  toast(msg)
+ },{enableHighAccuracy:true,timeout:12000,maximumAge:60000})
+}
+function openDataModal(e){if(e){e.preventDefault();e.stopPropagation()}dataModal.classList.add("open")}
+function closeDataInfo(){dataModal.classList.remove("open")}
+
+function resetApp(){if(userLocationMarker){map.removeLayer(userLocationMarker);userLocationMarker=null}if(userAccuracyCircle){map.removeLayer(userAccuracyCircle);userAccuracyCircle=null}search.value="";clearSearch.style.display="none";searchResults.classList.remove("open");currentFilter="all";closeDrawerMenu();enableMap(false);selectCountry("IR",false);setSheet("");toast("ابزار به حالت اولیه بازگشت")}
+dataStatusBtn.onclick=openDataModal;dataStatusBtn.onkeydown=e=>{if(e.key==="Enter"||e.key===" " )openDataModal(e)};closeDataModal.onclick=closeDataInfo;dataModal.onclick=e=>{if(e.target===dataModal)closeDataInfo()};locationBtn.onclick=showMyLocation;
+unlockMap.onclick=()=>enableMap(true);lockBtn.onclick=()=>enableMap(!mapEnabled);zoomIn.onclick=()=>map.zoomIn();zoomOut.onclick=()=>map.zoomOut();worldBtn.onclick=showWorld;worldChip.onclick=showWorld;crumbWorld.onclick=showWorld;fitCountry.onclick=()=>mode==="country"&&borderLayers[currentCountry]?map.fitBounds(borderLayers[currentCountry].getBounds(),{padding:[22,22]}):showWorld();resetFilters.onclick=()=>{currentFilter="all";search.value="";clearSearch.style.display="none";searchResults.classList.remove("open");if(mode==="country"){renderMarkers();renderList();countrySub.textContent=`${faNum(filtered(airportCache[currentCountry]).length)} فرودگاه با فیلتر فعلی`}toast("فیلترها پاک شدند")};brandReset.onclick=resetApp;map.on("moveend zoomend",updateStatus);
+search.addEventListener("input",()=>{const q=norm(search.value);clearSearch.style.display=q?"block":"none";if(!q){searchResults.classList.remove("open");return}const countries=Object.values(countryCatalog).filter(c=>norm(`${c.nameFa} ${c.nameEn} ${c.code} ${c.keywords}`).includes(q)).slice(0,15);let airports=[];Object.values(airportCache).forEach(arr=>airports.push(...arr.filter(a=>norm(`${a.name} ${a.municipality} ${a.iata} ${a.icao} ${a.ident} ${a.keywords}`).includes(q))));airports=airports.slice(0,30);let h="";if(countries.length)h+=`<div class="group">کشورها</div>`+countries.map(c=>`<button class="result" data-country="${c.code}"><div class="rcode">${c.code}</div><div><div class="rname">${esc(c.nameFa)}</div><div class="rmeta" dir="ltr">${esc(c.nameEn)}</div></div></button>`).join("");if(airports.length)h+=`<div class="group">فرودگاه‌ها و شهرهای بارگذاری‌شده</div>`+airports.map(a=>`<button class="result" data-airport="${a.country}:${a.id}"><div class="rcode">${esc(codeOf(a))}</div><div><div class="rname">${esc(a.name)}</div><div class="rmeta">${esc(a.municipality)} · ${esc(countryCatalog[a.country].nameFa)}</div></div></button>`).join("");searchResults.innerHTML=h||'<div class="empty">نتیجه‌ای پیدا نشد. برای جست‌وجوی فرودگاه، ابتدا کشور آن را انتخاب کنید.</div>';searchResults.classList.add("open");searchResults.querySelectorAll("[data-country]").forEach(b=>b.onclick=()=>{searchResults.classList.remove("open");selectCountry(b.dataset.country);setSheet("half")});searchResults.querySelectorAll("[data-airport]").forEach(b=>b.onclick=async()=>{const[code,id]=b.dataset.airport.split(":");if(currentCountry!==code)await selectCountry(code,false);const a=airportCache[code].find(x=>String(x.id)===id);searchResults.classList.remove("open");openAirport(a,markerMap.get(a.id))})});clearSearch.onclick=()=>{search.value="";clearSearch.style.display="none";searchResults.classList.remove("open");search.focus()};document.addEventListener("click",e=>{if(!e.target.closest(".search-zone"))searchResults.classList.remove("open")});
+const drawer=document.getElementById("drawer"),drawerBackdrop=document.getElementById("drawerBackdrop");function openDrawerMenu(){drawer.classList.add("open");drawerBackdrop.classList.add("open")}function closeDrawerMenu(){drawer.classList.remove("open");drawerBackdrop.classList.remove("open")}menuBtn.onclick=openDrawerMenu;closeDrawer.onclick=closeDrawerMenu;drawerBackdrop.onclick=closeDrawerMenu;drawerReset.onclick=resetApp;
+function openHelp(){helpModal.classList.add("open")}function closeHelpModal(){helpModal.classList.remove("open")}helpBtn.onclick=openHelp;fullHelp.onclick=()=>{closeDrawerMenu();openHelp()};closeHelp.onclick=closeHelpModal;helpModal.onclick=e=>{if(e.target===helpModal)closeHelpModal()};
+const steps=[{el:"#unlockMap",title:"فعال‌کردن نقشه",text:"ابتدا نقشه را فعال کنید تا بتوانید کشورها را لمس کنید."},{el:"#map",title:"انتخاب کشور",text:"روی هر کشور در نقشه لمس کنید؛ مرز آن برجسته و فرودگاه‌هایش بارگذاری می‌شوند."},{el:".filter-row",title:"فیلتر فرودگاه‌ها",text:"بین همه فرودگاه‌های برنامه‌ای، بین‌المللی، متوسط و کوچک جابه‌جا شوید."},{el:"#locationBtn",title:"موقعیت من",text:"با اجازه شما، موقعیت فعلی روی نقشه نمایش داده می‌شود."},{el:"#dataStatusBtn",title:"وضعیت داده",text:"نشان سبز توضیح می‌دهد داده‌ها روزانه به‌روزرسانی می‌شوند و فقط فرودگاه‌های دارای برنامه پروازی نمایش داده شده‌اند."},{el:"#search",title:"جست‌وجو",text:"کشور را فارسی یا انگلیسی جست‌وجو کنید. شهر و فرودگاه در کشورهای بارگذاری‌شده قابل جست‌وجو هستند."},{el:"#sheetHead",title:"پنل پایین",text:"تمام قسمت بالای پنل قابل لمس است. با لمس یا کشیدن، آن را باز و کوچک کنید."},{el:"#helpBtn",title:"راهنمای کامل",text:"هر زمان لازم بود از این دکمه، راهنمای کامل ابزار را باز کنید."}];let tourIndex=0;
+function startGuide(){closeDrawerMenu();closeHelpModal();tourIndex=0;showTourStep()}function showTourStep(){const s=steps[tourIndex],el=document.querySelector(s.el);tourTitle.textContent=s.title;tourText.textContent=s.text;tourNext.textContent=tourIndex===steps.length-1?"تمام":"بعدی";tourCard.classList.add("open");if(el){const r=el.getBoundingClientRect();tourFocus.style.left=Math.max(6,r.left-5)+"px";tourFocus.style.top=Math.max(6,r.top-5)+"px";tourFocus.style.width=Math.max(20,r.width+10)+"px";tourFocus.style.height=Math.max(20,r.height+10)+"px";tourFocus.classList.add("open")}else tourFocus.classList.remove("open")}function stopTour(){tourCard.classList.remove("open");tourFocus.classList.remove("open")}startTour.onclick=startGuide;helpTour.onclick=startGuide;tourExit.onclick=stopTour;tourNext.onclick=()=>{tourIndex++;if(tourIndex>=steps.length)stopTour();else showTourStep()};
+function toast(t){const el=document.getElementById("toast");el.textContent=t;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),2300)}
+
+async function shareToolsPage(){
+ const data={
+  title:"فرودگاه‌های جهان | FlyYab Tools",
+  text:"نقشه و اطلاعات فرودگاه‌های دارای برنامه پروازی جهان در FlyYab Tools",
+  url:"https://flyyab.ir/tools/world-airports"
+ };
+ try{
+  if(navigator.share){await navigator.share(data)}
+  else{
+   await navigator.clipboard.writeText(data.url);
+   toast("لینک ابزار کپی شد")
+  }
+ }catch(err){
+  if(err && err.name!=="AbortError")toast("اشتراک‌گذاری انجام نشد")
+ }
+}
+const shareBtnEl=document.getElementById("shareBtn");
+if(shareBtnEl)shareBtnEl.onclick=shareToolsPage;
+const drawerShareEl=document.getElementById("drawerShare");
+if(drawerShareEl)drawerShareEl.onclick=()=>{closeDrawerMenu();shareToolsPage()};
+
+window.addEventListener("resize",()=>setTimeout(()=>map.invalidateSize(),120));document.addEventListener("gesturestart",e=>e.preventDefault(),{passive:false});document.addEventListener("gesturechange",e=>e.preventDefault(),{passive:false});document.addEventListener("gestureend",e=>e.preventDefault(),{passive:false});setTimeout(()=>{map.invalidateSize();init()},350);
+setTimeout(()=>{
+ if(!countryFa.textContent){
+  setCountryHeader("IR","در حال تلاش مجدد برای دریافت اطلاعات");
+ }
+},1800);
+</script>
+</body>
+</html>
