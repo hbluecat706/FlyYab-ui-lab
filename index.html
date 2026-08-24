@@ -362,7 +362,132 @@ input[type=text]:focus,input[type=tel]:focus{
 }
 .contact-actions .primary{background:var(--red);color:#fff;border-color:var(--red)}
 
+
+/* CONTACT HUB */
+.contact-hub{
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  background:
+    radial-gradient(circle at 90% 0%, rgba(227,19,50,.08), transparent 28%),
+    #fff;
+  padding:14px;
+  box-shadow:var(--shadow-soft)
+}
+.contact-hub-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding-bottom:11px;border-bottom:1px solid var(--line)
+}
+.contact-hub-title{
+  display:flex;align-items:center;gap:9px
+}
+.contact-hub-mark{
+  width:42px;height:42px;border-radius:13px;background:var(--ink);
+  color:#fff;display:grid;place-items:center;flex:0 0 auto
+}
+.contact-hub-title h3{
+  margin:0;font-size:18px;line-height:1.4
+}
+.contact-hub-title span{
+  display:block;margin-top:2px;font-size:11px;color:var(--muted)
+}
+.contact-status{
+  display:flex;align-items:center;gap:6px;padding:6px 9px;
+  border-radius:999px;background:#f4f7f6;color:#3b5048;
+  font-size:10px;font-weight:700;white-space:nowrap
+}
+.contact-status-dot{
+  width:7px;height:7px;border-radius:50%;background:#16a36f;
+  box-shadow:0 0 0 4px rgba(22,163,111,.10)
+}
+
+.phone-panel{
+  margin-top:10px;padding:13px;border-radius:15px;background:var(--ink);color:#fff;
+  display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;
+  overflow:hidden;position:relative
+}
+.phone-panel:before{
+  content:"";position:absolute;width:120px;height:120px;border-radius:50%;
+  background:rgba(227,19,50,.16);left:-45px;bottom:-65px;pointer-events:none
+}
+.phone-copy{position:relative;z-index:2}
+.phone-copy span{
+  display:block;color:#aeb3bb;font-size:10px;margin-bottom:2px
+}
+.phone-number{
+  display:flex;align-items:center;gap:8px;direction:ltr;justify-content:flex-end;
+  font-size:24px;font-weight:700;letter-spacing:.5px;white-space:nowrap
+}
+.phone-number .icon{width:21px;height:21px;color:#ff8fa0}
+.phone-actions{
+  position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:6px
+}
+.phone-action{
+  min-height:42px;padding:0 12px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  font-size:11px;font-weight:700;white-space:nowrap
+}
+.phone-action.call{
+  background:#fff;color:var(--ink)
+}
+.phone-action.whatsapp{
+  background:#1f9d6a;color:#fff
+}
+.phone-action .icon{width:18px;height:18px}
+
+.hours-strip{
+  margin-top:8px;padding:9px 10px;border:1px solid var(--line);
+  border-radius:12px;background:#fbfbfc;
+  display:flex;align-items:center;justify-content:space-between;gap:10px
+}
+.hours-strip-main{
+  display:flex;align-items:center;gap:8px
+}
+.hours-icon{
+  width:34px;height:34px;border-radius:10px;background:var(--red-soft);
+  color:var(--red);display:grid;place-items:center;flex:0 0 auto
+}
+.hours-text span{
+  display:block;font-size:9px;color:var(--muted)
+}
+.hours-text b{
+  display:block;margin-top:1px;font-size:11px
+}
+.hours-off{
+  font-size:9px;color:var(--muted);white-space:nowrap
+}
+
+.social-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px
+}
+.social-card{
+  min-height:76px;padding:10px;border:1px solid var(--line);
+  border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:9px
+}
+.social-main{
+  display:flex;align-items:center;gap:8px;min-width:0
+}
+.social-icon{
+  width:36px;height:36px;border-radius:11px;background:var(--soft);
+  color:var(--ink);display:grid;place-items:center;flex:0 0 auto
+}
+.social-card.instagram .social-icon{
+  background:var(--red-soft);color:var(--red)
+}
+.social-copy span{
+  display:block;font-size:9px;color:var(--muted)
+}
+.social-copy b{
+  display:block;margin-top:1px;font-size:11px;direction:ltr;text-align:right;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:145px
+}
+.social-arrow{
+  width:30px;height:30px;border-radius:9px;border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--muted);flex:0 0 auto
+}
+.social-arrow .icon{width:15px;height:15px}
+
 /* ADDRESS */
+
 .address-card{
   border:1px solid var(--line);border-radius:var(--r-lg);background:#fff;padding:15px;
   display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center
@@ -498,6 +623,36 @@ footer{padding:20px 0 28px;text-align:center;color:#90959e;font-size:12px}
 
   summary{font-size:12px;padding:10px 0}
   details p{font-size:11px;margin-bottom:10px}
+
+  .contact-hub{padding:10px;border-radius:15px}
+  .contact-hub-head{padding-bottom:9px}
+  .contact-hub-mark{width:36px;height:36px;border-radius:11px}
+  .contact-hub-mark .icon{width:18px;height:18px}
+  .contact-hub-title h3{font-size:15px}
+  .contact-hub-title span{font-size:9px}
+  .contact-status{font-size:8px;padding:5px 7px}
+  .phone-panel{
+    grid-template-columns:1fr;
+    padding:11px;border-radius:13px;gap:9px
+  }
+  .phone-copy span{font-size:9px}
+  .phone-number{
+    justify-content:flex-start;font-size:22px;direction:ltr
+  }
+  .phone-actions{grid-template-columns:1fr 1fr}
+  .phone-action{min-height:40px;font-size:10px}
+  .hours-strip{padding:8px;align-items:flex-start}
+  .hours-icon{width:31px;height:31px}
+  .hours-text span{font-size:8px}
+  .hours-text b{font-size:10px}
+  .hours-off{font-size:8px}
+  .social-grid{grid-template-columns:1fr 1fr;gap:5px}
+  .social-card{min-height:68px;padding:8px}
+  .social-icon{width:32px;height:32px}
+  .social-copy span{font-size:8px}
+  .social-copy b{font-size:10px;max-width:105px}
+  .social-arrow{width:27px;height:27px}
+
   footer{font-size:10px}
 
   .hero-process{padding:14px!important}
@@ -789,30 +944,112 @@ footer{padding:20px 0 28px;text-align:center;color:#90959e;font-size:12px}
         </form>
       </div>
 
-      <aside class="contact-card">
-        <div class="contact-card-title">
-          <div class="contact-card-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg></div>
-          <div><div class="kicker">فروشگاه کیفی — ایران دلکو</div><h3>اطلاعات تماس</h3></div>
+      <aside class="contact-hub" aria-labelledby="contactHubTitle">
+        <div class="contact-hub-head">
+          <div class="contact-hub-title">
+            <div class="contact-hub-mark">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 5h16v14H4z"/>
+                <path d="M8 9h8M8 13h5"/>
+              </svg>
+            </div>
+            <div>
+              <h3 id="contactHubTitle">ارتباط مستقیم</h3>
+              <span>فروشگاه کیفی — ایران دلکو</span>
+            </div>
+          </div>
+          <div class="contact-status">
+            <span class="contact-status-dot"></span>
+            پاسخگویی فروشگاه
+          </div>
         </div>
 
-        <div class="contact-list">
-          <div class="contact-row">
-            <div class="contact-row-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg></div>
-            <div><span>ساعات پاسخگویی</span><b>شنبه تا پنجشنبه • 10:00 تا 19:00</b></div>
+        <div class="phone-panel">
+          <div class="phone-copy">
+            <span>شماره تماس و واتساپ</span>
+            <div class="phone-number">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4c-9 1-17-7-16-16z"/>
+              </svg>
+              <span>0912 024 0906</span>
+            </div>
           </div>
-          <div class="contact-row">
-            <div class="contact-row-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M4 4h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4c-9 1-17-7-16-16z"/></svg></div>
-            <div><span>شماره تماس</span><b dir="ltr">0912 024 0906</b></div>
-          </div>
-          <div class="contact-row">
-            <div class="contact-row-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3"/><path d="M17.5 6.5h.01"/></svg></div>
-            <div><span>اینستاگرام</span><b dir="ltr">@keifyadaki</b></div>
+
+          <div class="phone-actions">
+            <a class="phone-action call" href="tel:+989120240906" aria-label="تماس با فروشگاه">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4c-9 1-17-7-16-16z"/>
+              </svg>
+              تماس
+            </a>
+
+            <a class="phone-action whatsapp" href="https://wa.me/989120240906" target="_blank" rel="noopener" aria-label="ارسال پیام در واتساپ">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5z"/>
+                <path d="M8.5 8.5c.6 2.7 2.3 4.4 5 5"/>
+              </svg>
+              واتساپ
+            </a>
           </div>
         </div>
 
-        <div class="contact-actions">
-          <a class="primary" href="https://www.instagram.com/keifyadaki/" target="_blank" rel="noopener">اینستاگرام</a>
-          <a href="https://kfyadaki.ir/" target="_blank" rel="noopener">وب‌سایت</a>
+        <div class="hours-strip">
+          <div class="hours-strip-main">
+            <div class="hours-icon">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="8"/>
+                <path d="M12 8v5l3 2"/>
+              </svg>
+            </div>
+            <div class="hours-text">
+              <span>ساعات پاسخگویی</span>
+              <b>شنبه تا پنجشنبه، 10:00 تا 19:00</b>
+            </div>
+          </div>
+          <span class="hours-off">به‌غیر از ایام تعطیل</span>
+        </div>
+
+        <div class="social-grid">
+          <a class="social-card instagram" href="https://www.instagram.com/keifyadaki/" target="_blank" rel="noopener">
+            <div class="social-main">
+              <div class="social-icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="4" y="4" width="16" height="16" rx="4"/>
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M17.5 6.5h.01"/>
+                </svg>
+              </div>
+              <div class="social-copy">
+                <span>اینستاگرام</span>
+                <b>@keifyadaki</b>
+              </div>
+            </div>
+            <div class="social-arrow">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </div>
+          </a>
+
+          <a class="social-card" href="https://kfyadaki.ir/" target="_blank" rel="noopener">
+            <div class="social-main">
+              <div class="social-icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="8"/>
+                  <path d="M4 12h16M12 4a13 13 0 0 1 0 16M12 4a13 13 0 0 0 0 16"/>
+                </svg>
+              </div>
+              <div class="social-copy">
+                <span>وب‌سایت</span>
+                <b>kfyadaki.ir</b>
+              </div>
+            </div>
+            <div class="social-arrow">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </div>
+          </a>
         </div>
       </aside>
     </div>
