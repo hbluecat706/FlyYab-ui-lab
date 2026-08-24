@@ -121,19 +121,80 @@ h1{margin:15px 0 10px;font-size:clamp(36px,5vw,54px);line-height:1.3;font-weight
 .btn-red{background:var(--red);color:#fff;box-shadow:0 8px 20px rgba(227,19,50,.16)}
 .btn-light{background:#fff;color:var(--ink);border:1px solid var(--line)}
 
-.hero-process{padding:22px;background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:center}
-.hero-process small{font-size:11px;color:#afb4bc}
-.hero-process h2{margin:4px 0 12px;font-size:20px;line-height:1.55}
-.process-list{display:grid;gap:7px}
-.process-item{
-  display:grid;grid-template-columns:38px 1fr;gap:10px;align-items:center;
-  padding:9px;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:rgba(255,255,255,.055)
+
+.hero-process{
+  padding:22px;background:var(--ink);color:#fff;
+  display:flex;flex-direction:column;justify-content:center;overflow:hidden;position:relative
 }
-.process-icon{
-  width:38px;height:38px;border-radius:11px;background:#fff;color:var(--red);display:grid;place-items:center
+.hero-process:before{
+  content:"";position:absolute;width:190px;height:190px;border-radius:50%;
+  background:radial-gradient(circle,rgba(227,19,50,.18),transparent 68%);
+  left:-70px;top:-80px;pointer-events:none
 }
-.process-item b{display:block;font-size:13px}
-.process-item span{display:block;margin-top:1px;font-size:11px;color:#b7bbc2}
+.hero-process small{font-size:11px;color:#afb4bc;position:relative;z-index:2}
+.hero-process h2{margin:4px 0 14px;font-size:20px;line-height:1.55;position:relative;z-index:2}
+
+.journey{
+  position:relative;z-index:2;padding:8px 3px 4px
+}
+.journey-track{
+  position:absolute;right:9%;left:9%;top:31px;height:2px;
+  background:rgba(255,255,255,.16);overflow:hidden
+}
+.journey-track:before{
+  content:"";position:absolute;top:0;right:0;height:100%;width:34%;
+  background:linear-gradient(90deg,transparent,#ff6d82,var(--red));
+  animation:travelRTL 3.2s ease-in-out infinite
+}
+.journey-track:after{
+  content:"";position:absolute;top:50%;right:0;width:8px;height:8px;border-radius:50%;
+  background:#fff;box-shadow:0 0 0 5px rgba(227,19,50,.22),0 0 18px rgba(227,19,50,.72);
+  transform:translate(50%,-50%);
+  animation:dotRTL 3.2s ease-in-out infinite
+}
+@keyframes travelRTL{
+  0%{right:0;width:12%}
+  45%{right:43%;width:26%}
+  100%{right:88%;width:12%}
+}
+@keyframes dotRTL{
+  0%{right:0}
+  45%{right:50%}
+  100%{right:100%}
+}
+.journey-steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;direction:rtl
+}
+.journey-step{text-align:center;min-width:0}
+.journey-node{
+  width:58px;height:58px;margin:0 auto 9px;border-radius:18px;
+  display:grid;place-items:center;background:#fff;color:var(--red);
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:0 8px 22px rgba(0,0,0,.16);
+  position:relative;z-index:2
+}
+.journey-node .icon{width:25px;height:25px}
+.journey-step:nth-child(2) .journey-node{
+  background:#2a2d33;color:#fff;border-color:rgba(255,255,255,.11)
+}
+.journey-step:nth-child(3) .journey-node{
+  background:var(--red);color:#fff;border-color:var(--red)
+}
+.journey-step b{
+  display:block;font-size:12px;line-height:1.55;white-space:nowrap
+}
+.journey-step span{
+  display:block;margin-top:2px;color:#aeb3bb;font-size:9px;line-height:1.6
+}
+.journey-foot{
+  margin-top:12px;padding:9px 11px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.055);
+  display:flex;align-items:center;justify-content:space-between;gap:8px
+}
+.journey-foot strong{font-size:10px;color:#fff}
+.journey-foot span{font-size:9px;color:#aeb3bb}
+
 
 /* compact promise row */
 .promise-wrap{padding:8px 0 0}
@@ -438,7 +499,26 @@ footer{padding:20px 0 28px;text-align:center;color:#90959e;font-size:12px}
   summary{font-size:12px;padding:10px 0}
   details p{font-size:11px;margin-bottom:10px}
   footer{font-size:10px}
+
+  .hero-process{padding:14px!important}
+  .hero-process h2{font-size:17px!important;margin-bottom:11px!important}
+  .journey{padding-top:5px}
+  .journey-track{right:11%;left:11%;top:25px}
+  .journey-node{width:48px;height:48px;border-radius:15px;margin-bottom:7px}
+  .journey-node .icon{width:21px;height:21px}
+  .journey-step b{font-size:10px}
+  .journey-step span{font-size:8px;line-height:1.55}
+  .journey-foot{margin-top:9px;padding:8px 9px}
+  .journey-foot strong{font-size:9px}
+  .journey-foot span{font-size:8px}
 }
+
+
+@media(prefers-reduced-motion:reduce){
+  .journey-track:before,.journey-track:after{animation:none!important}
+  html{scroll-behavior:auto}
+}
+
 </style>
 </head>
 <body>
@@ -494,21 +574,51 @@ footer{padding:20px 0 28px;text-align:center;color:#90959e;font-size:12px}
         </div>
       </div>
 
-      <aside class="hero-process">
+      <aside class="hero-process" aria-labelledby="journeyTitle">
         <small>فرآیند فروش</small>
-        <h2>سه قدم ساده تا فروش</h2>
-        <div class="process-list">
-          <div class="process-item">
-            <div class="process-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3"/></svg></div>
-            <div><b>کد را بفرستید</b><span>عکس واضح از نوشته روی قطعه</span></div>
+        <h2 id="journeyTitle">سه قدم تا فروش</h2>
+
+        <div class="journey" aria-label="مراحل فروش کاتالیزور">
+          <div class="journey-track" aria-hidden="true"></div>
+
+          <div class="journey-steps">
+            <div class="journey-step">
+              <div class="journey-node">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 7h3l2-2h6l2 2h3v12H4z"/>
+                  <circle cx="12" cy="13" r="3"/>
+                </svg>
+              </div>
+              <b>عکس کد</b>
+              <span>واضح و خوانا</span>
+            </div>
+
+            <div class="journey-step">
+              <div class="journey-node">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 12h16"/>
+                  <path d="M7 8h10M7 16h7"/>
+                </svg>
+              </div>
+              <b>استعلام قیمت</b>
+              <span>بررسی همان قطعه</span>
+            </div>
+
+            <div class="journey-step">
+              <div class="journey-node">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="6" width="18" height="12"/>
+                  <path d="M7 10h6M7 14h4"/>
+                </svg>
+              </div>
+              <b>فروش نقدی</b>
+              <span>تحویل پس از توافق</span>
+            </div>
           </div>
-          <div class="process-item">
-            <div class="process-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M4 12h16M12 4v16"/></svg></div>
-            <div><b>قیمت را دریافت کنید</b><span>بررسی و اعلام مبلغ نهایی</span></div>
-          </div>
-          <div class="process-item">
-            <div class="process-icon"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12"/><path d="M7 10h6M7 14h4"/></svg></div>
-            <div><b>نقدی بفروشید</b><span>تحویل پس از توافق</span></div>
+
+          <div class="journey-foot">
+            <strong>عکس → قیمت → تسویه</strong>
+            <span>مسیر کوتاه و شفاف</span>
           </div>
         </div>
       </aside>
